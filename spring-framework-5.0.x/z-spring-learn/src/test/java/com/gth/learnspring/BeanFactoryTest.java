@@ -19,11 +19,6 @@ public class BeanFactoryTest {
 		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
 		MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
 		System.out.println(bean.getTestStr());
-		String s = "abc.java";
-//		s = s.substring(1);
-		System.out.println(s);
-		System.out.println(s.indexOf("abc"));
-		System.out.println(s.indexOf("java"));
 
 	}
 }
