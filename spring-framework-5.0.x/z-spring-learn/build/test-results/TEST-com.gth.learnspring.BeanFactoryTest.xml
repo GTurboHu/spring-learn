@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-23T07:47:39" hostname="PC-20191010VAVI" time="14419.129">
+  <properties/>
+  <testcase name="testSimpleLoad" classname="com.gth.learnspring.BeanFactoryTest" time="14419.129"/>
+  <system-out><![CDATA[testStr
+abc.java
+0
+4
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -325,6 +325,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @param beanName the name of the bean
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {
+		// ?????
 		return this.singletonsCurrentlyInCreation.contains(beanName);
 	}
 
