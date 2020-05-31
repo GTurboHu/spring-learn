@@ -1696,8 +1696,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				//如果指定BeanName是子Bean的话同时会合并父类相关属性
 				mbd = getMergedLocalBeanDefinition(beanName);
 			}
-			//synthetic 合成的
-			//是否是用户定义的而不是应用程序本身定义的
+			//synthetic 合成的、人造的
+			//是否是用户定义的、人造的，而不是应用程序本身定义的
 			boolean synthetic = (mbd != null && mbd.isSynthetic());
 			//从工厂bean里边获取实际的bean对象
 			//这个工厂bean可以是用户自己写的 XXXFactoryBean implements FactoryBean
