@@ -1,8 +1,10 @@
 package com.gth.learnspring;
 
 import org.junit.Test;
+import org.springframework.beans.factory.BeanCurrentlyInCreationException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 
@@ -33,4 +35,16 @@ public class BeanFactoryTest {
 		CarFactoryBean carFactoryBean = (CarFactoryBean) bf.getBean("&car");
 		System.out.println(carFactoryBean);
 	}
+	@Test(expected= BeanCurrentlyInCreationException.class)
+	public void testCircleByConstructor() throws Throwable {
+		try{
+			new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
+		}catch(Exception e){
+			//因为要在创建testC时抛出
+			Throwable e1 = e.getCause().getCause().getCause();
+			throw e1;
+		}
+
+	}
+
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T06:44:54" hostname="PC-20191010VAVI" time="508.777">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:21:00" hostname="PC-20191010VAVI" time="1.028">
   <properties/>
-  <testcase name="testSimpleLoad" classname="com.gth.learnspring.BeanFactoryTest" time="508.777"/>
-  <system-out><![CDATA[testStr
-]]></system-out>
+  <testcase name="testCircleByConstructor" classname="com.gth.learnspring.BeanFactoryTest" time="1.028"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
