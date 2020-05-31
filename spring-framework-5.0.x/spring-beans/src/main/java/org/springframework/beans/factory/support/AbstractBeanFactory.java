@@ -330,8 +330,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				//实例化依赖的bean后便可以实例化mbd本身了
 				//singleton模式的创建
 				if (mbd.isSingleton()) {
+					//第一个参数是beanName，第二个参数是ObjectFactory<?> singletonFactory
+					//拉姆达表达式重写了ObjectFactory的getObject()方法
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+							//这里返回的已经是一个实例bean了，返回给sharedInstance
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {
@@ -346,6 +349,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					//name为"&car"(未处理过的beanName),beanName是"car"(处理过的beanName)
 					//name是"&car",beanName是"car",则加载工厂类CarFactoryBean
 					//name是"car",beanName是"car",则使用工厂类的重写的getObject方法获取实际的Car类
+					//高频使用方法
+					//对工厂bean初始状态，还是factory-method方法返回的bean 进行详细处理
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
 
@@ -1649,12 +1654,16 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	protected Object getObjectForBeanInstance(
 			Object beanInstance, String name, String beanName, @Nullable RootBeanDefinition mbd) {
-
+		// name是未处理过的beanName可能带"&"符号代表要获取工厂bean，beanName是处理过的beanName，不带"&"符号
 		// Don't let calling code try to dereference the factory if the bean isn't a factory.
 		if (BeanFactoryUtils.isFactoryDereference(name)) {
+			/**
+			 * instanceof是怎么个比较方法呢？
+			 */
 			if (beanInstance instanceof NullBean) {
 				return beanInstance;
 			}
+			//如果指定的name是工厂相关(以&为前缀)，且beanInstance又不是FactoryBean类型则验证不通过
 			if (!(beanInstance instanceof FactoryBean)) {
 				throw new BeanIsNotAFactoryException(beanName, beanInstance.getClass());
 			}
@@ -1663,21 +1672,32 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		// Now we have the bean instance, which may be a normal bean or a FactoryBean.
 		// If it's a FactoryBean, we use it to create a bean instance, unless the
 		// caller actually wants a reference to the factory.
+		//如果beanInstance不是工厂类或者name不是以"&"开头，则代表beanInstance不是工厂类，直接返回就可以
+		//beanInstance如果是工厂类的话，一般会 implements FactoryBean
 		if (!(beanInstance instanceof FactoryBean) || BeanFactoryUtils.isFactoryDereference(name)) {
 			return beanInstance;
 		}
-
+		//从这里以下，证明beanInstance一定是工厂类
+		//加载Factorybean
 		Object object = null;
 		if (mbd == null) {
+			//尝试从缓存中加载bean
 			object = getCachedObjectForFactoryBean(beanName);
 		}
 		if (object == null) {
+			//到这里已经明确知道beanInstance一定是Factorybean类型
 			// Return bean instance from factory.
 			FactoryBean<?> factory = (FactoryBean<?>) beanInstance;
+			//containsBeanDefinition(beanName)检测beanDefinitionMap中
+			//也就是在所有已经加载的类中检测是否定义beanName
 			// Caches object obtained from FactoryBean if it is a singleton.
 			if (mbd == null && containsBeanDefinition(beanName)) {
+				//将存储XML配置文件的GenericBeanDefinition转化为RootBeanDefinition,
+				//如果指定BeanName是子Bean的话同时会合并父类相关属性
 				mbd = getMergedLocalBeanDefinition(beanName);
 			}
+			//synthetic 合成的
+			//是否是用户定义的而不是应用程序本身定义的
 			boolean synthetic = (mbd != null && mbd.isSynthetic());
 			//从工厂bean里边获取实际的bean对象
 			//这个工厂bean可以是用户自己写的 XXXFactoryBean implements FactoryBean
