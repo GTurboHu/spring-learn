@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T01:51:00" hostname="PC-20191010VAVI" time="0.901">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T02:18:07" hostname="PC-20191010VAVI" time="89.718">
   <properties/>
-  <testcase name="testFactoryBean" classname="com.gth.learnspring.BeanFactoryTest" time="0.901"/>
+  <testcase name="testFactoryBean" classname="com.gth.learnspring.BeanFactoryTest" time="89.718"/>
   <system-out><![CDATA[超级跑车
 200
 6000000.0
+com.gth.learnspring.CarFactoryBean@582b5490
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

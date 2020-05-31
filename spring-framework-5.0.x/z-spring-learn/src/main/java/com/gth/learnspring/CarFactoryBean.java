@@ -27,6 +27,7 @@ public class CarFactoryBean implements FactoryBean<Car> {
 		return Car.class;
 	}
 
+	//该工厂所管理的对象是单例吗？
 	@Override
 	public boolean isSingleton(){
 		return false;

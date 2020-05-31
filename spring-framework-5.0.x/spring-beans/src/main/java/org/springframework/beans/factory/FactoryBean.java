@@ -131,6 +131,7 @@ public interface FactoryBean<T> {
 	 * @see #getObject()
 	 * @see SmartFactoryBean#isPrototype()
 	 */
+	//该工厂所管理的对象是单例吗？
 	default boolean isSingleton() {
 		return true;
 	}

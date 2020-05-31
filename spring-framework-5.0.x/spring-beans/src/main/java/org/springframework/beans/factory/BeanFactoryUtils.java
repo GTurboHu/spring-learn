@@ -75,7 +75,7 @@ public abstract class BeanFactoryUtils {
 		String beanName = name;
 		//判断是不是以 & 开头，&为工厂bean前缀
 		while (beanName.startsWith(BeanFactory.FACTORY_BEAN_PREFIX)) {
-			//如果是以 & 开头，则去掉
+			//如果是以 & 开头，则代表要获取工厂bean，则去掉
 			beanName = beanName.substring(BeanFactory.FACTORY_BEAN_PREFIX.length());
 		}
 		return beanName;
