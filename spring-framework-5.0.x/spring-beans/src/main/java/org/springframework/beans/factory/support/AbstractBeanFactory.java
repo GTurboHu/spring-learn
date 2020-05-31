@@ -342,6 +342,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							throw ex;
 						}
 					});
+					//在这里判断了 "&car"和"car"的区别
+					//name为"&car"(未处理过的beanName),beanName是"car"(处理过的beanName)
+					//name是"&car",beanName是"car",则加载工厂类CarFactoryBean
+					//name是"car",beanName是"car",则使用工厂类的重写的getObject方法获取实际的Car类
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
 
