@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.context.support.BeanDefinitionDslTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:42:23" hostname="PC-20191010VAVI" time="0.119">
+  <properties/>
+  <testcase name="Declare beans with the functional Kotlin DSL" classname="org.springframework.context.support.BeanDefinitionDslTests" time="0.053"/>
+  <testcase name="Declare beans using profile condition with the functional Kotlin DSL" classname="org.springframework.context.support.BeanDefinitionDslTests" time="0.01"/>
+  <testcase name="Declare beans using environment condition with the functional Kotlin DSL" classname="org.springframework.context.support.BeanDefinitionDslTests" time="0.056"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

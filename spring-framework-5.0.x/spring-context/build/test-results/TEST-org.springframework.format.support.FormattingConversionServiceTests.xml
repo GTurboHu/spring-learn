@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.format.support.FormattingConversionServiceTests" tests="25" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:53" hostname="PC-20191010VAVI" time="0.053">
+  <properties/>
+  <testcase name="parseNull" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="printNull" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="parseNullDefault" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="proxiedFormatter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.002"/>
+  <testcase name="proxiedConverterFactory" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.002"/>
+  <testcase name="formatFieldForAnnotation" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.006"/>
+  <testcase name="formatFieldForTypeWithPrinterParserWithCoercion" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="parseNullPrimitiveProperty" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="formatFieldForValueInjectionUsingMetaAnnotations" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.016"/>
+  <testcase name="formatFieldForTypeWithFormatter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="introspectedFormatter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="registerDefaultValueViaFormatter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="formatFieldForAnnotationWithDirectFieldAccess" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="proxiedConverter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.002"/>
+  <testcase name="parseEmptyString" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="formatFieldForAnnotationWithPlaceholdersAndFactoryBean" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.008"/>
+  <testcase name="formatFieldForValueInjection" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.006"/>
+  <testcase name="introspectedConverterFactory" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="parseEmptyStringDefault" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="formatFieldForAnnotationWithPlaceholders" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.002"/>
+  <testcase name="formatFieldForAnnotationWithSubclassAsFieldType" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.003"/>
+  <testcase name="introspectedConverter" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="parseBlankString" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <testcase name="parseParserReturnsNull" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.001"/>
+  <testcase name="printNullDefault" classname="org.springframework.format.support.FormattingConversionServiceTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

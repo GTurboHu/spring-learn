@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.context.support.ConversionServiceFactoryBeanTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:47" hostname="PC-20191010VAVI" time="0.06">
+  <properties/>
+  <testcase name="createDefaultConversionService" classname="org.springframework.context.support.ConversionServiceFactoryBeanTests" time="0.0"/>
+  <testcase name="conversionServiceInApplicationContext" classname="org.springframework.context.support.ConversionServiceFactoryBeanTests" time="0.036"/>
+  <testcase name="conversionServiceInApplicationContextWithResourceOverriding" classname="org.springframework.context.support.ConversionServiceFactoryBeanTests" time="0.016"/>
+  <testcase name="createDefaultConversionServiceWithInvalidSupplements" classname="org.springframework.context.support.ConversionServiceFactoryBeanTests" time="0.0"/>
+  <testcase name="createDefaultConversionServiceWithSupplements" classname="org.springframework.context.support.ConversionServiceFactoryBeanTests" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

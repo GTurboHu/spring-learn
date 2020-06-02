@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:40:55" hostname="PC-20191010VAVI" time="0.01">
+  <properties/>
+  <testcase name="testWithPrototype" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.003"/>
+  <testcase name="testWithPropertiesFileAndMultipleLocalProperties" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.001"/>
+  <testcase name="testWithPropertiesXmlFile" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.004"/>
+  <testcase name="testWithPropertiesFileAndLocalProperties" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.0"/>
+  <testcase name="testWithLocalProperties" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.0"/>
+  <testcase name="testWithPropertiesFile" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.001"/>
+  <testcase name="testWithPropertiesFileAndLocalPropertiesAndLocalOverride" classname="org.springframework.beans.factory.config.PropertiesFactoryBeanTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

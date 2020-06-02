@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" tests="32" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:53" hostname="PC-20191010VAVI" time="0.333">
+  <properties/>
+  <testcase name="testRegistrationOnInterface" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.038"/>
+  <testcase name="testOperationOnGetter" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testOperationFromInterface" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.013"/>
+  <testcase name="testAttributeFromInterface" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.013"/>
+  <testcase name="testOperationParameterMetadata" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testManagedResourceDescriptor" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testMetricDescriptor" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testOperationDescriptor" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.01"/>
+  <testcase name="testMetricDescription" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testWithOnlyGetter" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testReadWriteAttribute" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testWithOnlySetter" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testMetricDescriptorDefaults" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.007"/>
+  <testcase name="testAttributeDescriptionOnGetter" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testWithCglibProxy" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.012"/>
+  <testcase name="testReadOnlyAttribute" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.009"/>
+  <testcase name="testAttributeDescriptionOnSetter" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testDescription" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.01"/>
+  <testcase name="testAttributeDescriptor" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.01"/>
+  <testcase name="testDescriptionNotNull" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.007"/>
+  <testcase name="testGetMBeanAttributeInfo" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.009"/>
+  <testcase name="testSetAttribute" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.027"/>
+  <testcase name="testAttributeInfoHasDescriptors" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.007"/>
+  <testcase name="testGetMBeanInfo" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.011"/>
+  <testcase name="testGetMBeanOperationInfo" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.007"/>
+  <testcase name="testRegisterOperations" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testRegisterAttributes" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.006"/>
+  <testcase name="testNotificationMetadata" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.008"/>
+  <testcase name="testAttributeHasCorrespondingOperations" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.007"/>
+  <testcase name="testMBeanRegistration" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.005"/>
+  <testcase name="testGetAttribute" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.006"/>
+  <testcase name="testOperationInvocation" classname="org.springframework.jmx.export.annotation.AnnotationMetadataAssemblerTests" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

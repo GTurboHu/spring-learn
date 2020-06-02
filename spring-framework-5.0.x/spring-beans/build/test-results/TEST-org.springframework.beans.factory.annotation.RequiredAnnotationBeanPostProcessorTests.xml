@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:40:54" hostname="PC-20191010VAVI" time="0.028">
+  <properties/>
+  <testcase name="testWithStaticFactoryMethod" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.021"/>
+  <testcase name="testWithThreeRequiredPropertiesOmitted" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.001"/>
+  <testcase name="testWithFactoryBean" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.003"/>
+  <testcase name="testWithCustomAnnotation" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.0"/>
+  <testcase name="testWithAllRequiredPropertiesSpecified" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.0"/>
+  <testcase name="testWithStaticFactoryMethodAndRequiredPropertiesSpecified" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.0"/>
+  <testcase name="testWithRequiredPropertyOmitted" classname="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessorTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

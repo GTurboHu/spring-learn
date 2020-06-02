@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.aop.interceptor.ExposeInvocationInterceptorTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:38:58" hostname="PC-20191010VAVI" time="0.015">
+  <properties/>
+  <testcase name="testXmlConfig" classname="org.springframework.aop.interceptor.ExposeInvocationInterceptorTests" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

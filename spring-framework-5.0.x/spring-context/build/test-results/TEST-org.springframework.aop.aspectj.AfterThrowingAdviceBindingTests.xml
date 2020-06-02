@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:09" hostname="PC-20191010VAVI" time="0.187">
+  <properties/>
+  <testcase name="testSimpleAfterThrowing" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.053"/>
+  <testcase name="testAfterThrowingWithTypeSpecified" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.023"/>
+  <testcase name="testAfterThrowingWithRuntimeExceptionBinding" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.021"/>
+  <testcase name="testAfterThrowingWithBinding" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.031"/>
+  <testcase name="testAfterThrowingWithRuntimeTypeSpecified" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.031"/>
+  <testcase name="testAfterThrowingWithNamedTypeRestriction" classname="org.springframework.aop.aspectj.AfterThrowingAdviceBindingTests" time="0.028"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

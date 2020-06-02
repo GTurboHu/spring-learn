@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.context.annotation.ConfigurationClassAndBFPPTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:37" hostname="PC-20191010VAVI" time="0.05">
+  <properties/>
+  <testcase name="autowiringSucceedsWithBFPPAsStaticMethod" classname="org.springframework.context.annotation.ConfigurationClassAndBFPPTests" time="0.022"/>
+  <testcase name="autowiringFailsWithBFPPAsInstanceMethod" classname="org.springframework.context.annotation.ConfigurationClassAndBFPPTests" time="0.018"/>
+  <testcase name="staticBeanMethodsDoNotRespectScoping" classname="org.springframework.context.annotation.ConfigurationClassAndBFPPTests" time="0.01"/>
+  <system-out><![CDATA[17:41:37.932 [Test worker] WARN  org.springframework.context.annotation.ConfigurationClassEnhancer - @Bean method AutowiredConfigWithBFPPAsInstanceMethod.bfpp is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
