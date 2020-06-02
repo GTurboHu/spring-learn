@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-05-31T11:09:38" hostname="PC-20191010VAVI" time="1.07">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-06-02T12:25:17" hostname="PC-20191010VAVI" time="1.066">
   <properties/>
-  <testcase name="testCircleByConstructor" classname="com.gth.learnspring.BeanFactoryTest" time="1.07">
+  <testcase name="testCircleByConstructor" classname="com.gth.learnspring.BeanFactoryTest" time="1.066">
     <failure message="org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'testA': Requested bean is currently in creation: Is there an unresolvable circular reference?" type="org.springframework.beans.factory.BeanCurrentlyInCreationException">org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'testA': Requested bean is currently in creation: Is there an unresolvable circular reference?
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:365)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:237)
@@ -48,7 +48,7 @@
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
 	at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:144)
 	at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:85)
-	at com.gth.learnspring.BeanFactoryTest.testCircleByConstructor(BeanFactoryTest.java:42)
+	at com.gth.learnspring.BeanFactoryTest.testCircleByConstructor(BeanFactoryTest.java:44)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
