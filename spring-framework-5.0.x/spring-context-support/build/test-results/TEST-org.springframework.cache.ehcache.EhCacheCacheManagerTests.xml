@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.cache.ehcache.EhCacheCacheManagerTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:42:39" hostname="PC-20191010VAVI" time="1.161">
+  <properties/>
+  <testcase name="getTransactionalOnExistingCache" classname="org.springframework.cache.ehcache.EhCacheCacheManagerTests" time="1.119"/>
+  <testcase name="getOnExistingCache" classname="org.springframework.cache.ehcache.EhCacheCacheManagerTests" time="0.009"/>
+  <testcase name="getOnNewCache" classname="org.springframework.cache.ehcache.EhCacheCacheManagerTests" time="0.013"/>
+  <testcase name="getOnUnknownCache" classname="org.springframework.cache.ehcache.EhCacheCacheManagerTests" time="0.009"/>
+  <testcase name="getTransactionalOnNewCache" classname="org.springframework.cache.ehcache.EhCacheCacheManagerTests" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

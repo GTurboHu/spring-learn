@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.scheduling.config.SchedulerBeanDefinitionParserTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:42:11" hostname="PC-20191010VAVI" time="0.027">
+  <properties/>
+  <testcase name="customScheduler" classname="org.springframework.scheduling.config.SchedulerBeanDefinitionParserTests" time="0.01"/>
+  <testcase name="threadNamePrefix" classname="org.springframework.scheduling.config.SchedulerBeanDefinitionParserTests" time="0.008"/>
+  <testcase name="defaultScheduler" classname="org.springframework.scheduling.config.SchedulerBeanDefinitionParserTests" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

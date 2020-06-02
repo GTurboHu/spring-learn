@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.ejb.config.JeeNamespaceHandlerTests" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:52" hostname="PC-20191010VAVI" time="0.192">
+  <properties/>
+  <testcase name="testSimpleDefinition" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.05"/>
+  <testcase name="testComplexRemoteSlsb" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.014"/>
+  <testcase name="testLazyInitJndiLookup" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.016"/>
+  <testcase name="testWithEnvironment" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.02"/>
+  <testcase name="testWithReferencedEnvironment" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.018"/>
+  <testcase name="testComplexLocalSlsb" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.021"/>
+  <testcase name="testSimpleRemoteSlsb" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.018"/>
+  <testcase name="testComplexDefinition" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.018"/>
+  <testcase name="testSimpleLocalSlsb" classname="org.springframework.ejb.config.JeeNamespaceHandlerTests" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

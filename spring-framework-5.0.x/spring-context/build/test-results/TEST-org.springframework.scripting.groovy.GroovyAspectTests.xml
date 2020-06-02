@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.scripting.groovy.GroovyAspectTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:42:16" hostname="PC-20191010VAVI" time="0.097">
+  <properties/>
+  <testcase name="manualGroovyBeanWithStaticPointcut" classname="org.springframework.scripting.groovy.GroovyAspectTests" time="0.024"/>
+  <testcase name="manualGroovyBeanWithDynamicPointcutProxyTargetClass" classname="org.springframework.scripting.groovy.GroovyAspectTests" time="0.029"/>
+  <testcase name="manualGroovyBeanWithUnconditionalPointcut" classname="org.springframework.scripting.groovy.GroovyAspectTests" time="0.026"/>
+  <testcase name="manualGroovyBeanWithDynamicPointcut" classname="org.springframework.scripting.groovy.GroovyAspectTests" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

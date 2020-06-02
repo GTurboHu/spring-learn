@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:40:56" hostname="PC-20191010VAVI" time="0.023">
+  <properties/>
+  <testcase name="configureBeanPerformsAutowiringByTypeIfAppropriateBeanWiringInfoResolverIsPluggedIn" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.011"/>
+  <testcase name="configureBeanReallyDoesDefaultToUsingTheFullyQualifiedClassNameOfTheSuppliedBeanInstance" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.001"/>
+  <testcase name="configureBeanDoesNothingIfBeanWiringInfoResolverResolvesToNull" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.0"/>
+  <testcase name="configureBeanPerformsAutowiringByNameIfAppropriateBeanWiringInfoResolverIsPluggedIn" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.001"/>
+  <testcase name="supplyIncompatibleBeanFactoryImplementation" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.01"/>
+  <testcase name="configureBeanDoesNothingIfNoBeanFactoryHasBeenSet" classname="org.springframework.beans.factory.wiring.BeanConfigurerSupportTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

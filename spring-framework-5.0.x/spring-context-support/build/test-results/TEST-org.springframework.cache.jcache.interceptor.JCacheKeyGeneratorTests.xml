@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.cache.jcache.interceptor.JCacheKeyGeneratorTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:42:46" hostname="PC-20191010VAVI" time="0.114">
+  <properties/>
+  <testcase name="getFlattenVararg" classname="org.springframework.cache.jcache.interceptor.JCacheKeyGeneratorTests" time="0.057"/>
+  <testcase name="getSimple" classname="org.springframework.cache.jcache.interceptor.JCacheKeyGeneratorTests" time="0.028"/>
+  <testcase name="getFiltered" classname="org.springframework.cache.jcache.interceptor.JCacheKeyGeneratorTests" time="0.029"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

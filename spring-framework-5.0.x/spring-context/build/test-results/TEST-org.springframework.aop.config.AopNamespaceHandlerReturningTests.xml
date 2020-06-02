@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.aop.config.AopNamespaceHandlerReturningTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:13" hostname="PC-20191010VAVI" time="0.027">
+  <properties/>
+  <testcase name="testParseReturningOnOtherAdviceType" classname="org.springframework.aop.config.AopNamespaceHandlerReturningTests" time="0.01"/>
+  <testcase name="testReturningOnReturningAdvice" classname="org.springframework.aop.config.AopNamespaceHandlerReturningTests" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

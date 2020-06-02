@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" tests="12" skipped="0" failures="0" errors="0" timestamp="2020-05-31T09:41:08" hostname="PC-20191010VAVI" time="0.611">
+  <properties/>
+  <testcase name="testNoInvokeWhenReturningParameterTypeDoesNotMatch" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.133"/>
+  <testcase name="testReturningBeanArray" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.051"/>
+  <testcase name="testReturningPrimitive" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.051"/>
+  <testcase name="testReturningBean" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.057"/>
+  <testcase name="testOneObjectArg" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.047"/>
+  <testcase name="testNeedsJoinPoint" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.04"/>
+  <testcase name="testReturningByType" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.036"/>
+  <testcase name="testReturningObject" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.045"/>
+  <testcase name="testReturningString" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.036"/>
+  <testcase name="testOneIntAndOneObjectArgs" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.034"/>
+  <testcase name="testNeedsJoinPointStaticPart" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.039"/>
+  <testcase name="testOneIntArg" classname="org.springframework.aop.aspectj.AfterReturningAdviceBindingTests" time="0.038"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
