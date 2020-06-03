@@ -16,39 +16,40 @@ import org.springframework.core.io.ClassPathResource;
 
 public class BeanFactoryTest {
 
-//	@Test
-//	public void testSimpleLoad(){
-//		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
-//		MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
-//		System.out.println(bean.getTestStr());
-//	}
+	@Test
+	public void testSimpleLoad(){
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
+		MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
+		System.out.println(bean.getTestStr());
+	}
 
-//	@Test
-//	public void testFactoryBean(){
-//		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
-//		//"car"前面不加"&"代表获取Car这个类，而不是CarFactoryBean
-//		Car bean = (Car) bf.getBean("car");
-//		System.out.println(bean.getBrand());
-//		System.out.println(bean.getMaxSpeed());
-//		System.out.println(bean.getPrice());
-//		//"&car"前面加上"&"代表要获取CarFactoryBean这个类
-//		CarFactoryBean carFactoryBean = (CarFactoryBean) bf.getBean("&car");
-//		System.out.println(carFactoryBean);
-//	}
+	@Test
+	public void testFactoryBean(){
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
+		//"car"前面不加"&"代表获取Car这个类，而不是CarFactoryBean
+		Car bean = (Car) bf.getBean("car");
+		System.out.println(bean.getBrand());
+		System.out.println(bean.getMaxSpeed());
+		System.out.println(bean.getPrice());
+		//"&car"前面加上"&"代表要获取CarFactoryBean这个类
+		CarFactoryBean carFactoryBean = (CarFactoryBean) bf.getBean("&car");
+		System.out.println(carFactoryBean);
+	}
 
 	//@Test的expected参数代表期望报错的类型，如果报错正确，则通过测试
-//	@Test(expected= BeanCurrentlyInCreationException.class)
-	@Test
-	public void testCircleByConstructor() throws Throwable {
-		try{
-			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
-			System.out.println(ctx.getBean("testC"));
-		}catch(Exception e){
-			//因为要在创建testC时抛出
-			Throwable e1 = e.getCause().getCause().getCause();
-			throw e1;
-		}
-
-	}
+////	@Test(expected= BeanCurrentlyInCreationException.class)
+//	@Test
+//	public void testCircleByConstructor() throws Throwable {
+//		try{
+//			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
+//			TestC testC = (TestC) ctx.getBean("testC");
+//			System.out.println(testC.getClass());
+//			System.out.println(testC.getTestA().getClass());
+//		}catch(Exception e){
+//			//因为要在创建testC时抛出
+//			Throwable e1 = e.getCause().getCause().getCause();
+//			throw e1;
+//		}
+//	}
 
 }

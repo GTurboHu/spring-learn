@@ -11,14 +11,25 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="car" class="com.gth.learnspring.CarFactoryBean">
 		<property name="carInfo" value="超级跑车,200,6000000"></property>
 	</bean>
+<!--<constructor-arg index="" ref=""/>这是构造器注入模式，循环依赖无法解决，只能抛出异常	-->
+<!--	<bean id="testA" class="com.gth.learnspring.TestA">-->
+<!--		<constructor-arg index="0" ref="testB"></constructor-arg>-->
+<!--	</bean>-->
+<!--	<bean id="testB" class="com.gth.learnspring.TestB">-->
+<!--		<constructor-arg index="0" ref="testC"></constructor-arg>-->
+<!--	</bean>-->
+<!--	<bean id="testC" class="com.gth.learnspring.TestC">-->
+<!--		<constructor-arg index="0" ref="testA"></constructor-arg>-->
+<!--	</bean>-->
+
 	<bean id="testA" class="com.gth.learnspring.TestA">
-		<constructor-arg index="0" ref="testB"></constructor-arg>
+		<property name="testB" ref="testB"/>
 	</bean>
 	<bean id="testB" class="com.gth.learnspring.TestB">
-		<constructor-arg index="0" ref="testC"></constructor-arg>
+		<property name="testC" ref="testC"/>
 	</bean>
 	<bean id="testC" class="com.gth.learnspring.TestC">
-		<constructor-arg index="0" ref="testA"></constructor-arg>
+		<property name="testA" ref="testA"/>
 	</bean>
 
 </beans>
