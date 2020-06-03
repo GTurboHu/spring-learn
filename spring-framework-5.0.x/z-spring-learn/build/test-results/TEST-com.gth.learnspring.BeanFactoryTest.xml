@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-06-02T12:25:17" hostname="PC-20191010VAVI" time="1.066">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-06-02T14:33:24" hostname="PC-20191010VAVI" time="1.086">
   <properties/>
-  <testcase name="testCircleByConstructor" classname="com.gth.learnspring.BeanFactoryTest" time="1.066">
+  <testcase name="testCircleByConstructor" classname="com.gth.learnspring.BeanFactoryTest" time="1.086">
     <failure message="org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'testA': Requested bean is currently in creation: Is there an unresolvable circular reference?" type="org.springframework.beans.factory.BeanCurrentlyInCreationException">org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'testA': Requested bean is currently in creation: Is there an unresolvable circular reference?
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:365)
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:237)
