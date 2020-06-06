@@ -42,7 +42,6 @@ public class BeanFactoryTest {
 	public void testCircleByConstructor() throws Throwable {
 		try{
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
-			int a = 5/1;
 			TestC testC = (TestC) ctx.getBean("testC");
 			System.out.println(testC.getClass());
 			System.out.println(testC.getTestA().getClass());
