@@ -37,19 +37,20 @@ public class BeanFactoryTest {
 	}
 
 	//@Test的expected参数代表期望报错的类型，如果报错正确，则通过测试
-////	@Test(expected= BeanCurrentlyInCreationException.class)
-//	@Test
-//	public void testCircleByConstructor() throws Throwable {
-//		try{
-//			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
-//			TestC testC = (TestC) ctx.getBean("testC");
-//			System.out.println(testC.getClass());
-//			System.out.println(testC.getTestA().getClass());
-//		}catch(Exception e){
-//			//因为要在创建testC时抛出
-//			Throwable e1 = e.getCause().getCause().getCause();
-//			throw e1;
-//		}
-//	}
+//	@Test(expected= BeanCurrentlyInCreationException.class)
+	@Test
+	public void testCircleByConstructor() throws Throwable {
+		try{
+			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
+			int a = 5/1;
+			TestC testC = (TestC) ctx.getBean("testC");
+			System.out.println(testC.getClass());
+			System.out.println(testC.getTestA().getClass());
+		}catch(Exception e){
+			//因为要在创建testC时抛出
+			Throwable e1 = e.getCause().getCause().getCause();
+			throw e1;
+		}
+	}
 
 }

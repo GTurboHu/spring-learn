@@ -185,6 +185,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
+	//这个属性是什么?什么时候注入的?
 	@Nullable
 	private Supplier<?> instanceSupplier;
 	/**

@@ -70,7 +70,7 @@ import org.springframework.util.StringUtils;
  * @see PropertyEditorRegistrySupport
  */
 public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyAccessor {
-
+	//Nestable 可嵌套的，可委托的。 nested 嵌套的，内装的
 	/**
 	 * We'll create a lot of these objects, so we don't want a new logger every time.
 	 */

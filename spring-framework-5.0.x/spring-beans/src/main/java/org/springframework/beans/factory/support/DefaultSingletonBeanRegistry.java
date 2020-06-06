@@ -351,6 +351,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {
 		// 当前正在被创建的beanName Set中是否包含这个beanName
+		//什么时候会加到这个singletonsCurrentlyInCreation Set里边呢?
 		return this.singletonsCurrentlyInCreation.contains(beanName);
 	}
 

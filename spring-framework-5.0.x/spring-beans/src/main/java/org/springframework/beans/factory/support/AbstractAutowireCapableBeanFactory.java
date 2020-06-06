@@ -538,7 +538,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
 		if (instanceWrapper == null) {
-			//根据指定bean使用对应的策略创建新的实例，如：工厂方法、构造函数自动注入、简单初始化
+			/**====根据指定bean使用对应的策略创建新的实例，如：工厂方法、构造函数自动注入、简单初始化====*/
+			//createBeanInstance方法在1111行左右
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		final Object bean = instanceWrapper.getWrappedInstance();
@@ -583,8 +584,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
-			//对bean进行补充，将各个属性值注入，其中，可能存在依赖于其他bean的属性，
-			//则会递归初始化依赖bean
+			/**
+			 * 对bean进行补充，将各个属性值注入，其中，可能存在依赖于其他bean的属性，
+			 * 则会递归初始化依赖bean
+			 */
 			populateBean(beanName, mbd, instanceWrapper);
 			//调用初始化方法，比如init-method
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
@@ -635,7 +638,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// Register bean as disposable.
 		try {
-			//根据scopse注册bean
+			/**根据scopse注册bean*/
+			//Disposable 一次性的，任意使用的
 			registerDisposableBeanIfNecessary(beanName, bean, mbd);
 		}
 		catch (BeanDefinitionValidationException ex) {
@@ -1104,6 +1108,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see #instantiateBean
 	 */
 	protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
+		//此方法在543行左右被doCreateBean方法调用
 		// Make sure bean class is actually resolved at this point.
 		//解析class
 		Class<?> beanClass = resolveBeanClass(mbd, beanName);
@@ -1115,9 +1120,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		//获取实例的供应商
 		Supplier<?> instanceSupplier = mbd.getInstanceSupplier();
 		if (instanceSupplier != null) {
+			//返回的是BeanWrapper
 			return obtainFromSupplier(instanceSupplier, beanName);
 		}
-		//如果工厂方法不为空则使用工厂方法初始化策略
+		/**如果工厂方法不为空则使用工厂方法初始化策略*/
 		if (mbd.getFactoryMethodName() != null) {
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
@@ -1128,6 +1134,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (args == null) {
 			synchronized (mbd.constructorArgumentLock) {
 				//一个类有多个构造函数，每个构造函数都会有不同的参数，所以调用前需要先根据参数锁定构造函数或对应的工厂方法
+				//有多重不同参数的构造函数，要判断使用哪个构造函数，是一个比较消耗性能的过程
+				//所以采用缓存机制，先从resolvedConstructorOrFactoryMethod缓存中去拿
+				//如果有则不需要再次解析
 				if (mbd.resolvedConstructorOrFactoryMethod != null) {
 					resolved = true;
 					autowireNecessary = mbd.constructorArgumentsResolved;
@@ -1137,26 +1146,28 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		//如果解析过则使用解析好的构造函数方法不需要再次锁定
 		if (resolved) {
 			if (autowireNecessary) {
-				//构造函数自动注入
+				/**构造函数自动注入*/
 				return autowireConstructor(beanName, mbd, null, null);
 			}
 			else {
-				//使用默认构造函数构造
+				/**使用默认构造函数构造*/
 				return instantiateBean(beanName, mbd);
 			}
 		}
 
 		// Candidate constructors for autowiring?
 		//需要根据参数解析构造函数
+		//determine 确定，判定，下决心
 		Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName);
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR ||
 				mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
-			//构造函数自动注入
+			/**构造函数自动注入*/
+			//autowireConstructor方法在1307行+
 			return autowireConstructor(beanName, mbd, ctors, args);
 		}
 
 		// No special handling: simply use no-arg constructor.
-		//使用默认的无参构造器
+		/**使用默认的无参构造器*/
 		return instantiateBean(beanName, mbd);
 	}
 
@@ -1295,7 +1306,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected BeanWrapper autowireConstructor(
 			String beanName, RootBeanDefinition mbd, @Nullable Constructor<?>[] ctors, @Nullable Object[] explicitArgs) {
+		//此方法在1150行、1166行被createBeanInstance方法调用
 
+		//autowireConstructor在ConstructorResolver.java的111行
 		return new ConstructorResolver(this).autowireConstructor(beanName, mbd, ctors, explicitArgs);
 	}
 
