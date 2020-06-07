@@ -1,5 +1,10 @@
 package com.gth.learnspring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
+
+
 /**
  * @Author: Hugt
  * @Date: 2020/5/31 17:06
@@ -7,10 +12,18 @@ package com.gth.learnspring;
  */
 
 public class TestA {
+
+	@Autowired
 	private TestB testB;
 
-	public TestA(TestB testB) {
+	@Resource(name = "testC")
+	private TestC testC;
+
+	public TestA() {
 	}
+
+//	public TestA(TestB testB) {
+//	}
 
 	public void a(){
 		testB.b();

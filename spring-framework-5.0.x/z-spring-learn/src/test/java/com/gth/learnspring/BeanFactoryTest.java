@@ -36,6 +36,17 @@ public class BeanFactoryTest {
 		System.out.println(carFactoryBean);
 	}
 
+	@Test
+	public void testABCBean(){
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
+		//"car"前面不加"&"代表获取Car这个类，而不是CarFactoryBean
+		TestA testA = (TestA) bf.getBean("testA");
+		TestB testB = (TestB) bf.getBean("testB");
+		TestC testC = (TestC) bf.getBean("testC");
+
+	}
+
+
 	//@Test的expected参数代表期望报错的类型，如果报错正确，则通过测试
 //	@Test(expected= BeanCurrentlyInCreationException.class)
 	@Test
