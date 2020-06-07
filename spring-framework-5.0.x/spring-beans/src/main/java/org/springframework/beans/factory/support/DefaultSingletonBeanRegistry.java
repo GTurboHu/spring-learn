@@ -69,7 +69,7 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.beans.factory.config.ConfigurableBeanFactory
  */
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
-
+	//Registry 登记处，注册处，登记保管处
 	/** Cache of singleton objects: bean name --> bean instance */
 	/** 保存BeanName和创建bean实例之间的关系 */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
@@ -92,6 +92,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/** Names of beans that are currently in creation */
+	// 单例对象会在什么时候加到这个Set集合里边?
 	private final Set<String> singletonsCurrentlyInCreation =
 			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
@@ -157,6 +158,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @param singletonFactory the factory for the singleton object
 	 */
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
+		//此方法被AbstractAutowireCapableBeanFactory的doCreateBean方法的585行调用
+		//AbstractAutowireCapableBeanFactory的继承关系
+		//AbstractAutowireCapableBeanFactory->AbstractBeanFactory->FactoryBeanRegistrySupport->DefaultSingletonBeanRegistry
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
 		synchronized (this.singletonObjects) {
 			if (!this.singletonObjects.containsKey(beanName)) {
@@ -233,7 +237,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				if (logger.isDebugEnabled()) {
 					logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 				}
-				//
+				/**
+				 * 在单例对象创建前，将单例对象的创建状态记录在singletonsCurrentlyInCreation Set集合中
+				 * 表示此单例bean正在创建
+				 */
 				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;
 				boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -241,7 +248,15 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					this.suppressedExceptions = new LinkedHashSet<>();
 				}
 				try {
-					//初始化bean
+					/**
+					 * 初始化bean
+					 * 调用singletonFactory的getObject方法获取bean
+					 * singletonFactory是方法传进来的参数
+					 * getObject方法都是重写ObjectFactory的getObject方法
+					 * 可以是匿名内部类传进来，也可能是拉姆达表达式传进来，
+					 * 也可以是用户自定义的类实现了ObjectFactory接口，重写getObject方法传进来
+					 * 用户自定义的类会通过xml或注解的方式被读取进来，然后作为方法的ObjectFactory参数传进来
+					 */
 					singletonObject = singletonFactory.getObject();
 					newSingleton = true;
 				}
@@ -265,7 +280,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (recordSuppressedExceptions) {
 						this.suppressedExceptions = null;
 					}
-					//
+					/**
+					 * 在单例对象创建后，将单例对象的创建状态从singletonsCurrentlyInCreation Set集合中移除
+					 * 表示此单例bean以创建完毕
+					 */
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {

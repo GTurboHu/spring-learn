@@ -568,8 +568,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		/**
 		 * 是否需要提早曝光，单例&允许循环依赖&当前bean正在创建中，检测循环依赖
 		 */
+											//是单例吗?				//允许循环引用吗?
 		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
 				isSingletonCurrentlyInCreation(beanName));
+				//此bean正在被创建中吗?
 		if (earlySingletonExposure) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Eagerly caching bean '" + beanName +
@@ -578,7 +580,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			//为避免后期循环依赖，可以在bean初始化完成前将创建实例的ObjectFactory加入工厂
 			//对bean再一次依赖引用，主要应用SmartInstantiationAware BeanPostProcess
 			//其中我们熟知的AOP就是在这里将advice动态织入bean中，若没有则直接返回bean，不做任何处理
+			//addSingletonFactory是DefaultSingletonBeanRegistry中的160行
+			//当前类的继承关系：AbstractAutowireCapableBeanFactory->AbstractBeanFactory->FactoryBeanRegistrySupport->DefaultSingletonBeanRegistry
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+			//addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory)
+			//() -> getEarlyBeanReference(beanName, mbd, bean)作为singletonFactory参数传进去
+			//在哪调用的getEarlyBeanReference方法呢?
 		}
 
 		// Initialize the bean instance.
@@ -1168,6 +1175,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// No special handling: simply use no-arg constructor.
 		/**使用默认的无参构造器*/
+		// instantiateBean方法在1255+行
 		return instantiateBean(beanName, mbd);
 	}
 
@@ -1252,6 +1260,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @return a BeanWrapper for the new instance
 	 */
 	protected BeanWrapper instantiateBean(final String beanName, final RootBeanDefinition mbd) {
+		// 此方法被1110行的createBeanInstance方法中的1172行调用
 		try {
 			Object beanInstance;
 			final BeanFactory parent = this;
