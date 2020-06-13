@@ -302,6 +302,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	@Override
 	public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
 		return loadBeanDefinitions(new EncodedResource(resource));
+		//EncodedResource就比Resource多了两个参数：String encoding Charset charset
 	}
 
 	/**
@@ -316,26 +317,32 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isInfoEnabled()) {
 			logger.info("Loading XML bean definitions from " + encodedResource);
 		}
-
+		//通过属性来记录已经加载过得资源
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
 			this.resourcesCurrentlyBeingLoaded.set(currentResources);
 		}
+		//HashSet的add会返回是否添加成功
 		if (!currentResources.add(encodedResource)) {
 			throw new BeanDefinitionStoreException(
 					"Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
 		try {
+			// ClassPathResource实现了Resource接口的getInputStream()方法，
+			// getInputStream()是根据传进来的Resource的实现类重写的，此处可以传进来ClassPathResource
 			InputStream inputStream = encodedResource.getResource().getInputStream();
 			try {
+				//InputSource这个类并不是来自Spring，它的全路径是：org.xml.sax.InputSource
 				InputSource inputSource = new InputSource(inputStream);
 				if (encodedResource.getEncoding() != null) {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
+				/**真正进入了核心逻辑*/
 				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
 			}
 			finally {
+				//关闭输入流
 				inputStream.close();
 			}
 		}
@@ -388,7 +395,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	protected int doLoadBeanDefinitions(InputSource inputSource, Resource resource)
 			throws BeanDefinitionStoreException {
 		try {
+			/**
+			 * 加载XML文件，并得到对应的Document
+			 * 获取XML的验证模式被转移到doLoadDocument方法中
+			 */
 			Document doc = doLoadDocument(inputSource, resource);
+
+			 /**根据返回的Document注册Bean信息*/
 			return registerBeanDefinitions(doc, resource);
 		}
 		catch (BeanDefinitionStoreException ex) {
@@ -428,6 +441,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
 		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,
 				getValidationModeForResource(resource), isNamespaceAware());
+				//获取XML的验证模式
 	}
 
 	/**

@@ -168,9 +168,11 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	public InputStream getInputStream() throws IOException {
 		InputStream is;
 		if (this.clazz != null) {
+			//调用clazz的方法
 			is = this.clazz.getResourceAsStream(this.path);
 		}
 		else if (this.classLoader != null) {
+			//调用classLoader的方法
 			is = this.classLoader.getResourceAsStream(this.path);
 		}
 		else {

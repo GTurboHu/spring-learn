@@ -18,6 +18,8 @@ public class BeanFactoryTest {
 
 	@Test
 	public void testSimpleLoad(){
+		//ClassPathResource类里边只存了文件的路径信息，类加载器，Class对象
+		//ClassPathResource的getInputStream就是调用了类加载器或Class对象的方法
 		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
 		MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
 		System.out.println(bean.getTestStr());

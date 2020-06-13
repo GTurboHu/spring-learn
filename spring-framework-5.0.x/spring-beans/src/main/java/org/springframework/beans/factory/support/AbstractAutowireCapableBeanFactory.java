@@ -167,6 +167,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	public AbstractAutowireCapableBeanFactory() {
 		super();
+		//调用super()构造器之后要进行本类的属性初始化，然后再进行下一个方法
+		//忽略依赖接口，就是向ignoredDependencyInterfaces Set add类
 		ignoreDependencyInterface(BeanNameAware.class);
 		ignoreDependencyInterface(BeanFactoryAware.class);
 		ignoreDependencyInterface(BeanClassLoaderAware.class);
