@@ -336,6 +336,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				//InputSource这个类并不是来自Spring，它的全路径是：org.xml.sax.InputSource
 				InputSource inputSource = new InputSource(inputStream);
 				if (encodedResource.getEncoding() != null) {
+					//设置编码
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
 				/**真正进入了核心逻辑*/
