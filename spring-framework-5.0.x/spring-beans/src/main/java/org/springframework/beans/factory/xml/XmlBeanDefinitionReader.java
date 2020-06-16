@@ -440,6 +440,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see DocumentLoader#loadDocument
 	 */
 	protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
+		//getEntityResolver()获取xml文档的解析器，就是从本项目中寻找dtd文档，dtd文档就只xml解析器
 		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,
 				getValidationModeForResource(resource), isNamespaceAware());
 				//获取XML的验证模式

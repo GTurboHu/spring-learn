@@ -59,7 +59,9 @@ public class DelegatingEntityResolver implements EntityResolver {
 	 * (can be {@code null}) to use the default ClassLoader)
 	 */
 	public DelegatingEntityResolver(@Nullable ClassLoader classLoader) {
+		//dtd解析器
 		this.dtdResolver = new BeansDtdResolver();
+		//通过调用META-INF/Spring.schemas解析
 		this.schemaResolver = new PluggableSchemaResolver(classLoader);
 	}
 
@@ -84,9 +86,11 @@ public class DelegatingEntityResolver implements EntityResolver {
 
 		if (systemId != null) {
 			if (systemId.endsWith(DTD_SUFFIX)) {
+				//dtd解析器
 				return this.dtdResolver.resolveEntity(publicId, systemId);
 			}
 			else if (systemId.endsWith(XSD_SUFFIX)) {
+				//通过调用META-INF/Spring.schemas解析
 				return this.schemaResolver.resolveEntity(publicId, systemId);
 			}
 		}
