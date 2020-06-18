@@ -62,6 +62,7 @@ public class DelegatingEntityResolver implements EntityResolver {
 		//dtd解析器
 		this.dtdResolver = new BeansDtdResolver();
 		//通过调用META-INF/Spring.schemas解析
+		//META-INF/Spring.schemas里边有详细的地址
 		this.schemaResolver = new PluggableSchemaResolver(classLoader);
 	}
 
