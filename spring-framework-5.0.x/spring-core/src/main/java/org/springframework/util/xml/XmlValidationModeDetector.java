@@ -95,13 +95,16 @@ public class XmlValidationModeDetector {
 			String content;
 			while ((content = reader.readLine()) != null) {
 				content = consumeCommentTokens(content);
+				     //如果是注释        如果是空行       则跳过
 				if (this.inComment || !StringUtils.hasText(content)) {
 					continue;
 				}
+				//包含dtd <!DOCTYPE
 				if (hasDoctype(content)) {
 					isDtdValidated = true;
 					break;
 				}
+				//读取到<开始符号之前，验证模式一定会在开始符号之前，所以break
 				if (hasOpeningTag(content)) {
 					// End of meaningful data...
 					break;

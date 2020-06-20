@@ -258,7 +258,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	protected EntityResolver getEntityResolver() {
 		if (this.entityResolver == null) {
-			// Determine default EntityResolver to use.
+			// Determine default EntityResolver to use. Determine:确定
 			ResourceLoader resourceLoader = getResourceLoader();
 			if (resourceLoader != null) {
 				this.entityResolver = new ResourceEntityResolver(resourceLoader);
@@ -399,6 +399,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			/**
 			 * 加载XML文件，并得到对应的Document
 			 * 获取XML的验证模式被转移到doLoadDocument方法中
+			 * 返回的是DeferredDocumentImpl
 			 */
 			Document doc = doLoadDocument(inputSource, resource);
 
@@ -440,10 +441,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see DocumentLoader#loadDocument
 	 */
 	protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
-		//getEntityResolver()获取xml文档的解析器，就是从本项目中寻找dtd文档，dtd文档就只xml解析器
+		//getEntityResolver()获取xml文档的解析器，就是从本项目中寻找dtd文档，dtd文档就是xml解析器
+		//documentLoader是DefaultDocumentLoader
 		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,
 				getValidationModeForResource(resource), isNamespaceAware());
-				//获取XML的验证模式
+				//获取XML的验证模式 457行
 	}
 
 	/**
@@ -456,9 +458,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	protected int getValidationModeForResource(Resource resource) {
 		int validationModeToUse = getValidationMode();
+		//如果手动指定了验证模式则使用指定的验证模式
+		//可以通过调用此类的setValidationMode方法进行手动注入指定
 		if (validationModeToUse != VALIDATION_AUTO) {
 			return validationModeToUse;
 		}
+		//如果未指定则使用自动检测
+		//detect 检测,察觉
 		int detectedMode = detectValidationMode(resource);
 		if (detectedMode != VALIDATION_AUTO) {
 			return detectedMode;
@@ -497,6 +503,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		}
 
 		try {
+			//自动检测验证模式 跳转到XmlValidationModeDetector 90行
 			return this.validationModeDetector.detectValidationMode(inputStream);
 		}
 		catch (IOException ex) {
@@ -519,9 +526,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see BeanDefinitionDocumentReader#registerBeanDefinitions
 	 */
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
+		//使用DefaultBeanDefinitionDocumentReader实例化BeanDefinitionDocumentReader
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
+		//缺少将环境变量Environment注入到docmentReader
+		//在实例化BeanDefinitionReader得时候，会将BeanDefinitionRegistry传入,默认使用继承自DefaultListableBeanFactory的子类
+		//XmlBeanFactory初始化的时候XmlBeanDefinitionReader属性初始化就传入了Registry参数,并且XmlBeanFactory自己本身就继承自Registry
+		//记录统计前BeanDefinition的加载个数
+		//getRegistry()返回的是DefaultListableBeanFactory,然后使用getBeanDefinitionCount()方法
 		int countBefore = getRegistry().getBeanDefinitionCount();
+		/**加载及注册bean*/
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
+		//记录本次加载的BeanDefinition个数
 		return getRegistry().getBeanDefinitionCount() - countBefore;
 	}
 

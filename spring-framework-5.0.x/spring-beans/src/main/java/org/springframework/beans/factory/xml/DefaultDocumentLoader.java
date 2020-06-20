@@ -130,6 +130,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 		DocumentBuilder docBuilder = factory.newDocumentBuilder();
 		if (entityResolver != null) {
+			//将EntityResolver注入
 			docBuilder.setEntityResolver(entityResolver);
 		}
 		if (errorHandler != null) {

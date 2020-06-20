@@ -54,6 +54,8 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 
 	/**
 	 * 资源加载器
+	 * 1.XmlBeanFactory初始化的时候，会实例化一个XmlBeanDefinitionReader并注入
+	 *   实例化XmlBeanDefinitionReader会对resourceLoader进行赋值
 	 */
 	@Nullable
 	private ResourceLoader resourceLoader;
@@ -89,9 +91,11 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 
 		// Determine ResourceLoader to use.
 		if (this.registry instanceof ResourceLoader) {
+			//当传入参数是XmlBeanFactory时,并不是ResourceLoader,此处判断为false
 			this.resourceLoader = (ResourceLoader) this.registry;
 		}
 		else {
+			//实例化DefaultResourceLoader
 			this.resourceLoader = new PathMatchingResourcePatternResolver();
 		}
 
