@@ -249,7 +249,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		 * extends FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry
 		 * 检查缓存中或实例工厂中是否有对应的实例
 		 * 为什么会先使用这段代码？
-		 *
+		 * 因为创建单例bean的时候，会存在依赖注入的情况，
+		 * 而在创建的时候避免循环依赖，
+		 * Spring创建bean的原则是不等bean创建完成就将bean的ObjectFactory提早曝光
+		 * 也就是将ObjectFactory加入到缓存中，
+		 * 一旦下个bean创建时需要依赖上个bean则直接使用ObjectFactory
 		 */
 		//直接尝试从缓存获取或者singletonFactories中的ObjectFactory中获取
 		Object sharedInstance = getSingleton(beanName);
@@ -263,6 +267,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					logger.debug("Returning cached instance of singleton bean '" + beanName + "'");
 				}
 			}
+			//返回对应的实例，有时候存在诸如FactoryBean的情况并不直接返回实例本身
+			//而是返回指定方法返回的实例
+			//在这里判断了 "&car"和"car"的区别
 			bean = getObjectForBeanInstance(sharedInstance, name, beanName, null);
 		}
 
@@ -302,6 +309,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			try {
 				//将存储XML配置文件的GernericBeanDefinition转换为RootBeanDefinition
 				//如果指定beanName是子Bean的话，同时会合并父类的相关属性
+				//为啥要合并？？？？
 				final RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
 				checkMergedBeanDefinition(mbd, beanName, args);
 
@@ -335,6 +343,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							//这里返回的已经是一个实例bean了，返回给sharedInstance
+							//传入的createBean方法是哪个类的方法？？？？
+							//AbstractAutowireCapableBeanFactory的458行代码？？？？？？
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {

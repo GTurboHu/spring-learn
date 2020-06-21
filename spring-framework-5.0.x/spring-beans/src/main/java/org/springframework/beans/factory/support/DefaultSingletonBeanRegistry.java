@@ -174,7 +174,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	@Override
 	@Nullable
 	public Object getSingleton(String beanName) {
-		//参数true设置标识允许早期依赖
+		// 参数true设置标识允许早期依赖
 		return getSingleton(beanName, true);
 	}
 
@@ -369,7 +369,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	public boolean isSingletonCurrentlyInCreation(String beanName) {
 		// 当前正在被创建的beanName Set中是否包含这个beanName
-		//什么时候会加到这个singletonsCurrentlyInCreation Set里边呢?
+		// 什么时候会加到这个singletonsCurrentlyInCreation Set里边呢?
 		return this.singletonsCurrentlyInCreation.contains(beanName);
 	}
 

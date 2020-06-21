@@ -146,7 +146,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
-
+		/**
+		 * 此处使用了模板方法设计模式
+		 * 父类设计出一套方法执行顺序
+		 * 子类按照顺序去实现具体的执行内容
+		 */
 		/**解析前处理,留给子类实现,此处为空方法*/
 		preProcessXml(root);
 		/**核心处理逻辑*/
