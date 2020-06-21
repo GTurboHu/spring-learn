@@ -344,7 +344,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						try {
 							//这里返回的已经是一个实例bean了，返回给sharedInstance
 							//传入的createBean方法是哪个类的方法？？？？
-							//AbstractAutowireCapableBeanFactory的458行代码？？？？？？
+							//是本类的1837行抽象方法
+							//在AbstractAutowireCapableBeanFactory的458行实现了createBean方法
+							//传进去的方法是子类实现的
+							//这是拉姆达表达式的什么用法？？？？？
+							//lambda表达式可以传本类方法进去
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {
