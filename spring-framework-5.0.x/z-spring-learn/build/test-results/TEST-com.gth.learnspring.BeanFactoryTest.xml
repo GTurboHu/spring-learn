@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-23T12:19:11" hostname="PC-20191010VAVI" time="1.558">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-23T15:03:23" hostname="PC-20191010VAVI" time="0.974">
   <properties/>
-  <testcase name="testSimpleLoad" classname="com.gth.learnspring.BeanFactoryTest" time="1.558"/>
+  <testcase name="testSimpleLoad" classname="com.gth.learnspring.BeanFactoryTest" time="0.974"/>
   <system-out><![CDATA[xml-field
+myTestBean
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

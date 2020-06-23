@@ -577,6 +577,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				isSingletonCurrentlyInCreation(beanName));
 				//此bean正在被创建中吗?
 		if (earlySingletonExposure) {
+			//处理循环依赖，将singletonFactory加入缓存
 			if (logger.isDebugEnabled()) {
 				logger.debug("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
@@ -629,6 +630,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		if (earlySingletonExposure) {
+			//循环依赖检查
 			Object earlySingletonReference = getSingleton(beanName, false);
 			//earlySingletonReference只有在循环检测到有循环依赖的情况下才会不为空
 			if (earlySingletonReference != null) {
