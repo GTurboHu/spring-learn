@@ -188,6 +188,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		/**
+		 * 主要涉及了循环引用的相关功能
+		 */
 		//检查缓存中是否存在实例
 		Object singletonObject = this.singletonObjects.get(beanName);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
@@ -282,7 +285,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					}
 					/**
 					 * 在单例对象创建后，将单例对象的创建状态从singletonsCurrentlyInCreation Set集合中移除
-					 * 表示此单例bean以创建完毕
+					 * 表示此单例bean以创建完毕，不处于正在创建中
 					 */
 					afterSingletonCreation(beanName);
 				}
