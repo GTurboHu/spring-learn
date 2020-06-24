@@ -29,13 +29,13 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 <!--		<constructor-arg index="0" ref="testA"></constructor-arg>-->
 <!--	</bean>-->
 
-	<bean id="testA" class="com.gth.learnspring.TestA">
+	<bean id="testA" class="com.gth.learnspring.TestA" autowire="byName">
 		<property name="testB" ref="testB"/>
 	</bean>
-	<bean id="testB" class="com.gth.learnspring.TestB">
+	<bean id="testB" class="com.gth.learnspring.TestB" autowire="byType">
 		<property name="testC" ref="testC"/>
 	</bean>
-	<bean id="testC" class="com.gth.learnspring.TestC">
+	<bean id="testC" class="com.gth.learnspring.TestC" autowire="constructor">
 		<property name="testA" ref="testA"/>
 	</bean>
 

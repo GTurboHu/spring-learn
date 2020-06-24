@@ -1175,7 +1175,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		//如果解析过则使用解析好的构造函数方法不需要再次锁定
 		if (resolved) {
+			//确定是否解析了构造器
 			if (autowireNecessary) {
+				//确定有哪些参数
 				/**构造函数自动注入*/
 				return autowireConstructor(beanName, mbd, null, null);
 			}
