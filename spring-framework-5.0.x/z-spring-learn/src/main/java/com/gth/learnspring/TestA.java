@@ -13,17 +13,21 @@ import javax.annotation.Resource;
 
 public class TestA {
 
-	@Autowired
-	private TestB testB;
+	private String name;
 
-	@Resource(name = "testC")
-	private TestC testC;
+	private TestB testB;
 
 	public TestA() {
 	}
-
-//	public TestA(TestB testB) {
-//	}
+	public TestA(TestB testB) {
+	}
+	public TestA(String name) {
+		this.name = name;
+	}
+	public TestA(TestB testB,String name){
+		this.name = name;
+		this.testB = testB;
+	}
 
 	public void a(){
 		testB.b();
@@ -35,4 +39,13 @@ public class TestA {
 	public void setTestB(TestB testB) {
 		this.testB = testB;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

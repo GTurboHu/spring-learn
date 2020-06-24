@@ -28,7 +28,7 @@ public class BeanFactoryTest {
 
 	@Test
 	public void testFactoryBean(){
-		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("FactoryBean.xml"));
 		//"car"前面不加"&"代表获取Car这个类，而不是CarFactoryBean
 		Car bean = (Car) bf.getBean("car");
 		System.out.println(bean.getBrand());
@@ -40,9 +40,17 @@ public class BeanFactoryTest {
 	}
 
 	@Test
+	public void testConstructorAutowired(){
+		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("Constructor-Autowired.xml"));
+		TestA a = (TestA) bf.getBean("testA");
+		System.out.println(a);
+		System.out.println(a.getTestB());
+		System.out.println(a.getName());
+	}
+
+	@Test
 	public void testABCBean(){
-		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("BeanFactoryTest.xml"));
-		//"car"前面不加"&"代表获取Car这个类，而不是CarFactoryBean
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("CircularReference.xml"));
 		TestA testA = (TestA) bf.getBean("testA");
 		TestB testB = (TestB) bf.getBean("testB");
 		TestC testC = (TestC) bf.getBean("testC");
@@ -55,10 +63,10 @@ public class BeanFactoryTest {
 	@Test
 	public void testCircleByConstructor() throws Throwable {
 		try{
-			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("BeanFactoryTest.xml");
-			TestC testC = (TestC) ctx.getBean("testC");
-			System.out.println(testC.getClass());
-			System.out.println(testC.getTestA().getClass());
+			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("CircularReferenceByConstructor.xml");
+			TestE testE = (TestE) ctx.getBean("testE");
+			System.out.println(testE.getClass());
+			System.out.println(testE.getTestF().getClass());
 		}catch(Exception e){
 			//因为要在创建testC时抛出
 			Throwable e1 = e.getCause().getCause().getCause();

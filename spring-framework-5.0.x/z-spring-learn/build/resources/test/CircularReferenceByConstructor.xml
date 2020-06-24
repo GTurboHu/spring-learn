@@ -9,10 +9,16 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 http://www.springframework.org/schema/context
 https://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--	<context:component-scan base-package="com.gth.learnspring" />-->
-<!--	<context:annotation-config/>-->
-	<bean id="myTestBean" class="com.gth.learnspring.MyTestBean">
-		<property name="testStr" value="xml-field"></property>
+
+	<!--<constructor-arg index="" ref=""/>这是构造器注入模式，循环依赖无法解决，只能抛出异常	-->
+	<bean id="testE" class="com.gth.learnspring.TestE">
+		<constructor-arg index="0" ref="testF"></constructor-arg>
+	</bean>
+	<bean id="testF" class="com.gth.learnspring.TestF">
+		<constructor-arg index="0" ref="testG"></constructor-arg>
+	</bean>
+	<bean id="testG" class="com.gth.learnspring.TestG">
+		<constructor-arg index="0" ref="testE"></constructor-arg>
 	</bean>
 
 </beans>
