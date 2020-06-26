@@ -1194,7 +1194,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR ||
 				mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
 			/**构造函数自动注入*/
-			//autowireConstructor方法在1307行+
+			//autowireConstructor方法在1342行+
 			return autowireConstructor(beanName, mbd, ctors, args);
 		}
 

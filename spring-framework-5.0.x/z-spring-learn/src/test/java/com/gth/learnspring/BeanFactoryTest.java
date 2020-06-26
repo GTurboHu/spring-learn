@@ -35,6 +35,7 @@ public class BeanFactoryTest {
 		System.out.println(bean.getMaxSpeed());
 		System.out.println(bean.getPrice());
 		//"&car"前面加上"&"代表要获取CarFactoryBean这个类
+		//在哪里做的一些操作
 		CarFactoryBean carFactoryBean = (CarFactoryBean) bf.getBean("&car");
 		System.out.println(carFactoryBean);
 	}

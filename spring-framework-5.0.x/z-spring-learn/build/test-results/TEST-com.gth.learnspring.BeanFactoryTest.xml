@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-24T13:54:50" hostname="PC-20191010VAVI" time="0.864">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-26T05:19:06" hostname="PC-20191010VAVI" time="2641.558">
   <properties/>
-  <testcase name="testConstructorAutowired" classname="com.gth.learnspring.BeanFactoryTest" time="0.864"/>
-  <system-out><![CDATA[com.gth.learnspring.TestA@75a41aab
-com.gth.learnspring.TestB@7a268c2
+  <testcase name="testConstructorAutowired" classname="com.gth.learnspring.BeanFactoryTest" time="2641.558"/>
+  <system-out><![CDATA[com.gth.learnspring.TestA@360d2352
+com.gth.learnspring.TestB@6dcf94a9
 ConstructorString
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

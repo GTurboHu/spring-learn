@@ -35,15 +35,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.PropertyEditorRegistrar;
-import org.springframework.beans.PropertyEditorRegistry;
-import org.springframework.beans.PropertyEditorRegistrySupport;
-import org.springframework.beans.SimpleTypeConverter;
-import org.springframework.beans.TypeConverter;
-import org.springframework.beans.TypeMismatchException;
+import org.springframework.beans.*;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.BeanCurrentlyInCreationException;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
@@ -198,7 +190,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	public Object getBean(String name) throws BeansException {
 		return doGetBean(name, null, null, false);
 	}
-
+	//返回T类型的实例
+	//public <T> T getBean(...)  public T getBean(...) 这两种写法有着本质区别
+	//public <T> T getBean(...)这种写法是规定了方法内部的泛型，与方法外部其他泛型无关系
+	//public T getBean(...)这种方法使用的是方法外部的泛型
 	@Override
 	public <T> T getBean(String name, @Nullable Class<T> requiredType) throws BeansException {
 		return doGetBean(name, requiredType, null, false);
@@ -1200,7 +1195,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 */
 	protected void initBeanWrapper(BeanWrapper bw) {
 		bw.setConversionService(getConversionService());
+
 		registerCustomEditors(bw);
+		//BeanWrapperImpl继承/实现了PropertyEditorRegistry
 	}
 
 	/**
@@ -1262,6 +1259,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (mbd != null) {
 			return mbd;
 		}
+												//从bd Map中获取beanDefinition
 		return getMergedBeanDefinition(beanName, getBeanDefinition(beanName));
 	}
 
