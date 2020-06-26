@@ -110,8 +110,11 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 	@Override
 	public Object instantiate(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner,
 			final Constructor<?> ctor, @Nullable Object... args) {
-
+		//如果有需要覆盖或者动态替换方法则当然需要使用cglib进行动态代理，因为可以在创建代理的同时
+		//将动态方法织入类中
+		//但如果没有需要动态改变的方法，为了方便直接反射就行了
 		if (!bd.hasMethodOverrides()) {
+			//空才会进来
 			if (System.getSecurityManager() != null) {
 				// use own privileged to change accessibility (when security is on)
 				AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
@@ -119,9 +122,12 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 					return null;
 				});
 			}
+			//反射实例化
 			return (args != null ? BeanUtils.instantiateClass(ctor, args) : BeanUtils.instantiateClass(ctor));
 		}
 		else {
+			//非空进这里
+			//此处必须有cglib子类重写才行
 			return instantiateWithMethodInjection(bd, beanName, owner, ctor, args);
 		}
 	}

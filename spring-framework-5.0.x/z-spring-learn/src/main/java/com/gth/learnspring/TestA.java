@@ -21,9 +21,11 @@ public class TestA {
 	}
 	public TestA(TestB testB) {
 	}
+
 	public TestA(String name) {
 		this.name = name;
 	}
+
 	public TestA(TestB testB,String name){
 		this.name = name;
 		this.testB = testB;

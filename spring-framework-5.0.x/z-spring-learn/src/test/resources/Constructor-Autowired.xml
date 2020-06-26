@@ -13,8 +13,8 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 	<!--<constructor-arg index="" ref=""/>这是构造器注入模式，循环依赖无法解决，只能抛出异常	-->
 	<!--为什么构造器注入无法解决循环依赖？是因为什么-->
 	<bean id="testA" class="com.gth.learnspring.TestA">
-		<constructor-arg index="0" ref="testB"></constructor-arg>
-		<constructor-arg index="1" value="ConstructorString"></constructor-arg>
+<!--		<constructor-arg index="0" ref="testB"></constructor-arg>-->
+		<constructor-arg index="0" value="ConstructorString"></constructor-arg>
 	</bean>
 	<bean id="testB" class="com.gth.learnspring.TestB">
 		<!--		<constructor-arg index="0" ref="testC"></constructor-arg>-->

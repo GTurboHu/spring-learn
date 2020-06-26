@@ -106,6 +106,7 @@ class BeanDefinitionValueResolver {
 		// We must check each value to see whether it requires a runtime reference
 		// to another bean to be resolved.
 		if (value instanceof RuntimeBeanReference) {
+			//如果是引用，则解析引用
 			RuntimeBeanReference ref = (RuntimeBeanReference) value;
 			return resolveReference(argName, ref);
 		}
@@ -297,9 +298,11 @@ class BeanDefinitionValueResolver {
 							"Can't resolve reference to bean '" + refName +
 									"' in parent factory: no parent factory available");
 				}
+				//调用getBean方法
 				bean = this.beanFactory.getParentBeanFactory().getBean(refName);
 			}
 			else {
+				//调用getBean方法
 				bean = this.beanFactory.getBean(refName);
 				this.beanFactory.registerDependentBean(refName, this.beanName);
 			}
