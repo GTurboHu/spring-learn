@@ -15,7 +15,8 @@ public class TestB {
 
 	public TestB() {
 	}
-
+	public TestB(TestA testA) {
+	}
 //	public TestB(TestC testC) {
 //	}
 

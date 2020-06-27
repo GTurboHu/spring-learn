@@ -249,6 +249,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		 * Spring创建bean的原则是不等bean创建完成就将bean的ObjectFactory提早曝光
 		 * 也就是将ObjectFactory加入到缓存中，
 		 * 一旦下个bean创建时需要依赖上个bean则直接使用ObjectFactory
+		 *
 		 */
 		//直接尝试从缓存获取或者singletonFactories中的ObjectFactory中获取
 		Object sharedInstance = getSingleton(beanName);

@@ -573,10 +573,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		/**
 		 * 是否需要提早曝光，单例&允许循环依赖&当前bean正在创建中，检测循环依赖
 		 */
-											//是单例吗?				//允许循环引用吗?
+											//是单例吗?				//允许循环引用吗?类初始值默认true
 		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
 				isSingletonCurrentlyInCreation(beanName));
 				//此bean正在被创建中吗?
+		//DefaultSingletonBeanRegistry的248行beforeSingletonCreation将正在创建的bean加入到singletonsCurrentlyInCreation Set中
+		//DefaultSingletonBeanRegistry的291行afterSingletonCreation将正在创建的bean从singletonsCurrentlyInCreation Set中移除
 		if (earlySingletonExposure) {
 			//处理循环依赖，将singletonFactory加入缓存
 			if (logger.isDebugEnabled()) {
@@ -589,6 +591,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			//addSingletonFactory是DefaultSingletonBeanRegistry中的160行
 			//当前类的继承关系：AbstractAutowireCapableBeanFactory->AbstractBeanFactory->FactoryBeanRegistrySupport->DefaultSingletonBeanRegistry
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+			/**AbstractBeanFactory的255行使用了singletonFactory*/
 			//addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory)
 			//() -> getEarlyBeanReference(beanName, mbd, bean)作为singletonFactory参数传进去
 			//在哪调用的getEarlyBeanReference方法呢?
@@ -617,7 +620,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			//在1347行
 			populateBean(beanName, mbd, instanceWrapper);
 			/**调用初始化方法，比如init-method*/
-			//1764行
+			//1774行
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {

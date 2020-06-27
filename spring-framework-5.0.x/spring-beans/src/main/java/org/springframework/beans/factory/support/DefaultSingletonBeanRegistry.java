@@ -165,6 +165,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		synchronized (this.singletonObjects) {
 			if (!this.singletonObjects.containsKey(beanName)) {
 				this.singletonFactories.put(beanName, singletonFactory);
+				//什么时候往里边加的beanName
+				//记录在缓存中，earlySingletonObjects和singletonFactories互斥
+				//为什么是互斥关系呢？
+				//互斥的地方在DefaultSingletonBeanRegistry的219行
 				this.earlySingletonObjects.remove(beanName);
 				this.registeredSingletons.add(beanName);
 			}
@@ -201,11 +205,18 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				if (singletonObject == null && allowEarlyReference) {
 					//当某些方法需要提前初始化的时候则会调用addSingletonFactory方法将对应的
 					//ObjectFactory初始化策略存储在singletonFactories
+					/**
+					 * singletonFactories是AbstractAutowireCapableBeanFactory得593行加进来的
+					 * 单例bean会在创建过程中将自己的单例对象工厂加入到单例工厂池中
+					 * 在这里进行使用
+					 */
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
 						//调用预先设定的getObject方法
 						singletonObject = singletonFactory.getObject();
 						//记录在缓存中，earlySingletonObjects和singletonFactories互斥
+						//为什么是互斥的？
+						//互斥的地方在DefaultSingletonBeanRegistry的167行
 						this.earlySingletonObjects.put(beanName, singletonObject);
 						this.singletonFactories.remove(beanName);
 					}
@@ -384,6 +395,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void beforeSingletonCreation(String beanName) {
 		if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
+			// inCreationCheckExclusions 如果beanName在这里，就不进行正在创建检查
+			// singletonsCurrentlyInCreation是Set
+			// 如果Set包含重复数据，就会add失败返回false，抛异常
 			throw new BeanCurrentlyInCreationException(beanName);
 		}
 	}

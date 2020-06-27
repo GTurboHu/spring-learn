@@ -172,6 +172,7 @@ class ConstructorResolver {
 				//resolveConstructorArguments方法在616行左右
 				//能解析到的参数个数
 				minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValues);
+				//经过这个方法之后resolvedValues就有值了，并且是配置文件中的参数
 			}
 
 			// Take specified constructors, if any.
@@ -314,7 +315,13 @@ class ConstructorResolver {
 						beanFactory.getAccessControlContext());
 			}
 			else {
-				/**实例化bean*/
+				/**
+				 * 实例化bean
+				 * 这里的argsToUse必须是已经实例化完成的
+				 * 所以构造器注入是无法完成循环引用的，
+				 * 因为在寻找构造器的参数时，就会去实例化参数，
+				 * 产生循环引用到第一个类的时候，第一个类还没有实例化完成
+				 */
 				beanInstance = strategy.instantiate(mbd, beanName, this.beanFactory, constructorToUse, argsToUse);
 			}
 			//将构建的实例加入BeanWrapper中
