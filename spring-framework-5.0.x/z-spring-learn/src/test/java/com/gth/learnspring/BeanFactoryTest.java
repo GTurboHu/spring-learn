@@ -50,6 +50,15 @@ public class BeanFactoryTest {
 	}
 
 	@Test
+	public void testAutowireByNameOrType(){
+		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("autowiredbynametype.xml"));
+		TestA a = (TestA) bf.getBean("testA");
+		TestB b = (TestB) bf.getBean("testB");
+		System.out.println(a);
+		System.out.println(b);
+	}
+
+	@Test
 	public void testABCBean(){
 		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("CircularReference.xml"));
 		TestA testA = (TestA) bf.getBean("testA");

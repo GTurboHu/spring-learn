@@ -617,10 +617,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			 * 对bean进行补充，将各个属性值注入，其中，可能存在依赖于其他bean的属性，
 			 * 则会递归初始化依赖bean
 			 */
-			//在1347行
+			//在1361行
 			populateBean(beanName, mbd, instanceWrapper);
 			/**调用初始化方法，比如init-method*/
-			//1774行
+			//1777行
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
@@ -1359,7 +1359,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param bw the BeanWrapper with bean instance
 	 */
 	protected void populateBean(String beanName, RootBeanDefinition mbd, @Nullable BeanWrapper bw) {
-		//被doCreateBean这个方法的612行调用
+		//被doCreateBean这个方法的621行调用
 		if (bw == null) {
 			if (mbd.hasPropertyValues()) {
 				throw new BeanCreationException(

@@ -16,6 +16,7 @@ public class TestA {
 	private String name;
 
 	private TestB testB;
+	private TestC testC;
 
 	public TestA() {
 	}
@@ -50,4 +51,11 @@ public class TestA {
 		this.name = name;
 	}
 
+	public TestC getTestC() {
+		return testC;
+	}
+
+	public void setTestC(TestC testC) {
+		this.testC = testC;
+	}
 }
