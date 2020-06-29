@@ -9,6 +9,9 @@ package com.gth.learnspring;
 public class TestF {
 	private TestG testG;
 
+	public TestF() {
+	}
+
 	public TestF(TestG testG) {
 		this.testG = testG;
 	}

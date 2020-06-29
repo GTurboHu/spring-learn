@@ -15,14 +15,14 @@ public class TestB {
 
 	public TestB() {
 	}
-	public TestB(TestA testA) {
-	}
+//	public TestB(TestA testA) {
+//	}
 //	public TestB(TestC testC) {
 //	}
 
-	public void b(){
-		testC.c();
-	}
+//	public void b(){
+//		testC.c();
+//	}
 	public TestC getTestC() {
 		return testC;
 	}

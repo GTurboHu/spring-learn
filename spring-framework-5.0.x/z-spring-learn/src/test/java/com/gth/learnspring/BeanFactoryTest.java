@@ -45,8 +45,8 @@ public class BeanFactoryTest {
 		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("Constructor-Autowired.xml"));
 		TestA a = (TestA) bf.getBean("testA");
 		System.out.println(a);
-		System.out.println(a.getTestB());
-		System.out.println(a.getName());
+//		System.out.println(a.getTestB());
+//		System.out.println(a.getName());
 	}
 
 	@Test
@@ -55,6 +55,10 @@ public class BeanFactoryTest {
 		TestA a = (TestA) bf.getBean("testA");
 		TestB b = (TestB) bf.getBean("testB");
 		System.out.println(a);
+		System.out.println(a.getTestC());
+		System.out.println(a.getTestD());
+		System.out.println(a.getTestE());
+		System.out.println(a.getTestF());
 		System.out.println(b);
 	}
 

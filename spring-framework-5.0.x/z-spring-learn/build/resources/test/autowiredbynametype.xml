@@ -9,13 +9,27 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 http://www.springframework.org/schema/context
 https://www.springframework.org/schema/context/spring-context.xsd">
 
+
+<!--	<bean id="testA" class="com.gth.learnspring.TestA">-->
+<!--		<property name="testC" ref="testC"></property>-->
+<!--	</bean>-->
+<!--	不加autowire="byName"这个属性，只会注入testC，testA中有其他属性也不会注入-->
+<!--	加上autowire="byName"这个属性之后，不仅会注入testC，还会注入testA中的其他属性（testD和testE）-->
+
 	<bean id="testA" class="com.gth.learnspring.TestA" autowire="byName">
 		<property name="testC" ref="testC"></property>
 	</bean>
+
 	<bean id="testB" class="com.gth.learnspring.TestB" autowire="byType">
 		<property name="testC" ref="testC"></property>
 	</bean>
 	<bean id="testC" class="com.gth.learnspring.TestC">
+
+	</bean>
+	<bean id="testD" class="com.gth.learnspring.TestD">
+
+	</bean>
+	<bean id="testF" class="com.gth.learnspring.TestF">
 
 	</bean>
 </beans>

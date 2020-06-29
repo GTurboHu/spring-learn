@@ -1461,6 +1461,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		//寻找bw中需要依赖注入的属性
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
+			// propertyName属性必须在容器中才会进行getBean和添加属性、注册依赖
 			if (containsBean(propertyName)) {
 				//getBean方法是AbstractBeanFactory的198行的getBean方法
 				/**递归初始化相关的bean */
@@ -1556,6 +1557,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 */
 	protected String[] unsatisfiedNonSimpleProperties(AbstractBeanDefinition mbd, BeanWrapper bw) {
+		//unsatisfied 未处理的，不满意的
 		Set<String> result = new TreeSet<>();
 		PropertyValues pvs = mbd.getPropertyValues();
 		PropertyDescriptor[] pds = bw.getPropertyDescriptors();

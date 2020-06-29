@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-29T12:23:12" hostname="PC-20191010VAVI" time="1.332">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-29T14:56:47" hostname="PC-20191010VAVI" time="0.875">
   <properties/>
-  <testcase name="testAutowireByNameOrType" classname="com.gth.learnspring.BeanFactoryTest" time="1.332"/>
-  <system-out><![CDATA[com.gth.learnspring.TestA@441c7807
-com.gth.learnspring.TestB@3fd0322d
+  <testcase name="testAutowireByNameOrType" classname="com.gth.learnspring.BeanFactoryTest" time="0.875"/>
+  <system-out><![CDATA[com.gth.learnspring.TestA@54ae17e5
+com.gth.learnspring.TestC@725cfce5
+com.gth.learnspring.TestD@55277ee9
+null
+null
+com.gth.learnspring.TestB@6b586f3a
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
