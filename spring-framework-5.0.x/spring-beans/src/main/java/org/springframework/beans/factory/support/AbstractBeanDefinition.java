@@ -252,6 +252,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	/**
 	 * 是否是用户定义的，而不是应用程序本身定义的，创建AOP时候为true，
 	 * 程序设置
+	 * synthetic合成的，人造的
 	 */
 	private boolean synthetic = false;
 	/**
