@@ -50,15 +50,24 @@ public class BeanFactoryTest {
 	}
 
 	@Test
-	public void testAutowireByNameOrType(){
+	public void testAutowireByName(){
 		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("autowiredbynametype.xml"));
 		TestA a = (TestA) bf.getBean("testA");
-		TestB b = (TestB) bf.getBean("testB");
 		System.out.println(a);
+		System.out.println(a.getA());
+		System.out.println(a.getB());
+		System.out.println(a.getStr1());
+		System.out.println(a.getStr2());
 		System.out.println(a.getTestC());
 		System.out.println(a.getTestD());
 		System.out.println(a.getTestE());
 		System.out.println(a.getTestF());
+	}
+
+	@Test
+	public void testAutowireByType(){
+		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("autowiredbynametype.xml"));
+		TestB b = (TestB) bf.getBean("testB");
 		System.out.println(b);
 	}
 

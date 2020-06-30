@@ -72,10 +72,12 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	//Registry 登记处，注册处，登记保管处
 	/** Cache of singleton objects: bean name --> bean instance */
 	/** 保存BeanName和创建bean实例之间的关系 */
+	/**一级缓存*/
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/** Cache of singleton factories: bean name --> ObjectFactory */
 	/** 保存BeanName和创建bean的工厂之间的关系 */
+	/**三级缓存*/
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/** Cache of early singleton objects: bean name --> bean instance */
@@ -85,6 +87,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * 那么当bean还在创建过程中，就可以通过getBean方法获取到了，
 	 * 其目的是用来检测循环引用
 	 */
+	/**二级缓存*/
 	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
 
 	/** Set of registered singletons, containing the bean names in registration order */

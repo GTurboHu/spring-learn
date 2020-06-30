@@ -17,9 +17,6 @@ public class TestC {
 //	public TestC(TestA testA) {
 //	}
 
-//	public void c(){
-//		testA.a();
-//	}
 //	public TestA getTestA() {
 //		return testA;
 //	}

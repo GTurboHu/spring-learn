@@ -1405,9 +1405,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// Add property values based on autowire by type if applicable.
 			/**根据类型自动注入*/
 			if (resolvedAutowireMode == AUTOWIRE_BY_TYPE) {
-				//1474行
+				//1499行
 				autowireByType(beanName, mbd, bw, newPvs);
 			}
+			// 以上的autowire，只是找到属性（没有的话就先实例化？？？），
+			// 再将属性实例放到的MutablePropertyValues的List中
 			pvs = newPvs;
 		}
 
@@ -1440,8 +1442,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		if (pvs != null) {
-			/**将属性应用到bean中*/
-			//1621行
+			/**将属性应用到bean中，注入到bean中*/
+			//1678行
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
@@ -1461,6 +1463,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		//unsatisfiedNonSimpleProperties在1518行
 		//寻找bw中需要依赖注入的属性
+		/**
+		 * unsatisfiedNonSimpleProperties方法就是寻找
+		 * bean中的引用属性，不包括int，String这类，这些属于简单属性，也无法自动注入（在配置文件中写可以注入）
+		 * pvs是配置文件中的属性，再加上其他的引用属性（满足一些条件），就可以完成自动注入了
+		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			// propertyName属性必须在容器中才会进行getBean和添加属性、注册依赖
@@ -1468,6 +1475,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				//getBean方法是AbstractBeanFactory的198行的getBean方法
 				/**递归初始化相关的bean */
 				Object bean = getBean(propertyName);
+				//将获取到的bean实例放到属性值对象中
 				pvs.add(propertyName, bean);
 				//注册依赖
 				registerDependentBean(propertyName, beanName);
@@ -1498,7 +1506,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected void autowireByType(
 			String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
-		//被1389调用
+		//被1409调用
 
 		TypeConverter converter = getCustomTypeConverter();
 		if (converter == null) {
@@ -1507,6 +1515,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		Set<String> autowiredBeanNames = new LinkedHashSet<>(4);
 		//寻找bw中需要依赖注入的属性
+		/**
+		 * unsatisfiedNonSimpleProperties方法就是寻找
+		 * bean中的引用属性，不包括int，String这类，这些属于简单属性，也无法自动注入（在配置文件中写可以注入）
+		 * pvs是配置文件中的属性，再加上其他的引用属性（满足一些条件），就可以完成自动注入了
+		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			try {
@@ -1526,9 +1539,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					 * @Autowired private List<A> aList;将会找到所匹配A类型的bean并将
 					 * 其注入
 					 */
-					//resolveDependency是DefaultListableBeanFactory的1044行
+					//resolveDependency是DefaultListableBeanFactory的1048行
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
+						//将获取到的对象放入属性值对象中
 						pvs.add(propertyName, autowiredArgument);
 					}
 					for (String autowiredBeanName : autowiredBeanNames) {

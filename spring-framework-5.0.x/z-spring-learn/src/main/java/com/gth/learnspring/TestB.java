@@ -12,22 +12,24 @@ import org.springframework.stereotype.Component;
 public class TestB {
 
 	private TestC testC;
+	private TestD testD;
 
 	public TestB() {
 	}
-//	public TestB(TestA testA) {
-//	}
-//	public TestB(TestC testC) {
-//	}
 
-//	public void b(){
-//		testC.c();
-//	}
 	public TestC getTestC() {
 		return testC;
 	}
 
 	public void setTestC(TestC testC) {
 		this.testC = testC;
+	}
+
+	public TestD getTestD() {
+		return testD;
+	}
+
+	public void setTestD(TestD testD) {
+		this.testD = testD;
 	}
 }

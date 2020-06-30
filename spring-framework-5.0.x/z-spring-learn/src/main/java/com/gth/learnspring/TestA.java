@@ -12,7 +12,10 @@ import javax.annotation.Resource;
  */
 
 public class TestA {
-
+	private int a = 1;
+	private int b;
+	private String str1 = "默认str1";
+	private String str2;
 	private String name;
 
 //	private TestB testB;
@@ -53,6 +56,47 @@ public class TestA {
 //	public void setName(String name) {
 //		this.name = name;
 //	}
+
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
+	public String getStr1() {
+		return str1;
+	}
+
+	public void setStr1(String str1) {
+		this.str1 = str1;
+	}
+
+	public int getB() {
+		return b;
+	}
+
+	public void setB(int b) {
+		this.b = b;
+	}
+
+	public String getStr2() {
+		return str2;
+	}
+
+	public void setStr2(String str2) {
+		this.str2 = str2;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public TestC getTestC() {
 		return testC;
