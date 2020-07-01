@@ -18,7 +18,6 @@ public class TestA {
 	private String str2;
 	private String name;
 
-//	private TestB testB;
 	private TestC testC;
 	private TestD testD;
 	private TestE testE;
@@ -26,37 +25,6 @@ public class TestA {
 
 	public TestA() {
 	}
-//	public TestA(TestB testB) {
-//	}
-//
-//	public TestA(String name) {
-//		this.name = name;
-//	}
-//
-//	public TestA(TestB testB,String name){
-//		this.name = name;
-//		this.testB = testB;
-//	}
-
-//	public void a(){
-//		testB.b();
-//	}
-//	public TestB getTestB() {
-//		return testB;
-//	}
-//
-//	public void setTestB(TestB testB) {
-//		this.testB = testB;
-//	}
-
-//	public String getName() {
-//		return name;
-//	}
-
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-
 
 	public int getA() {
 		return a;
@@ -126,7 +94,4 @@ public class TestA {
 		return testF;
 	}
 
-//	public void setTestF(TestF testF) {
-//		this.testF = testF;
-//	}
 }

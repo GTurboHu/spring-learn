@@ -7,17 +7,17 @@ package com.gth.learnspring;
  */
 
 public class TestE {
-	private TestF testF;
-
-	public TestE(TestF testF) {
-		this.testF = testF;
-	}
-
-	public TestF getTestF() {
-		return testF;
-	}
-
-	public void setTestF(TestF testF) {
-		this.testF = testF;
-	}
+//	private TestF testF;
+//
+//	public TestE(TestF testF) {
+//		this.testF = testF;
+//	}
+//
+//	public TestF getTestF() {
+//		return testF;
+//	}
+//
+//	public void setTestF(TestF testF) {
+//		this.testF = testF;
+//	}
 }

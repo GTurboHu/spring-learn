@@ -89,7 +89,7 @@ public class BeanFactoryTest {
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("CircularReferenceByConstructor.xml");
 			TestE testE = (TestE) ctx.getBean("testE");
 			System.out.println(testE.getClass());
-			System.out.println(testE.getTestF().getClass());
+//			System.out.println(testE.getTestF().getClass());
 		}catch(Exception e){
 			//因为要在创建testC时抛出
 			Throwable e1 = e.getCause().getCause().getCause();

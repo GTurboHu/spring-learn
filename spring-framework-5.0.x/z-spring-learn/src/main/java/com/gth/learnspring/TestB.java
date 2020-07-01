@@ -3,6 +3,8 @@ package com.gth.learnspring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @Author: Hugt
  * @Date: 2020/5/31 17:06
@@ -13,6 +15,7 @@ public class TestB {
 
 	private TestC testC;
 	private TestD testD;
+	private List<TestE> testEList;
 
 	public TestB() {
 	}
