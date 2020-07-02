@@ -599,7 +599,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				return typeToMatch.isAssignableFrom(targetClass);
 			}
 		}
-
+		//预测类型返回的是beanName的类，就是mbd的类
 		Class<?> beanType = predictBeanType(beanName, mbd, typesToMatch);
 		if (beanType == null) {
 			return false;
@@ -632,6 +632,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (resolvableType != null && resolvableType.resolve() == beanType) {
 			return typeToMatch.isAssignableFrom(resolvableType);
 		}
+		//beanType是beanName的类，就是mbd的类，正在遍历的beanName
+		//typeToMatch要匹配的类型
+		                  //可分配的
 		return typeToMatch.isAssignableFrom(beanType);
 	}
 

@@ -211,7 +211,7 @@ public abstract class BeanFactoryUtils {
 	 */
 	public static String[] beanNamesForTypeIncludingAncestors(
 			ListableBeanFactory lbf, Class<?> type, boolean includeNonSingletons, boolean allowEagerInit) {
-
+															//包括非单例						//允许急于初始化
 		Assert.notNull(lbf, "ListableBeanFactory must not be null");
 		String[] result = lbf.getBeanNamesForType(type, includeNonSingletons, allowEagerInit);
 		if (lbf instanceof HierarchicalBeanFactory) {
