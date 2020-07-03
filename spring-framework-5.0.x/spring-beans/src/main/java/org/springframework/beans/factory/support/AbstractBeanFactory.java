@@ -524,6 +524,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 	@Override
 	public boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException {
+		//name是遍历beanDefinitionMap中的beanName typeToMatch是需要匹配的类型
+
 		String beanName = transformedBeanName(name);
 
 		// Check manually registered singletons.
@@ -580,8 +582,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		// Retrieve corresponding bean definition.
+		//找到beanName对应的beanDefinition
 		RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);
-
+		//处理需要匹配的类型，处理成Class
 		Class<?> classToMatch = typeToMatch.resolve();
 		if (classToMatch == null) {
 			classToMatch = FactoryBean.class;
@@ -599,7 +602,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				return typeToMatch.isAssignableFrom(targetClass);
 			}
 		}
-		//预测类型返回的是beanName的类，就是mbd的类
+		//预测类型返回的是beanName的类，就是mbd的类,是遍历bdMap中类
+		//传入的beanName和mbd是遍历bdMap的，typesToMatch是有待匹配的类型
 		Class<?> beanType = predictBeanType(beanName, mbd, typesToMatch);
 		if (beanType == null) {
 			return false;
@@ -634,7 +638,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 		//beanType是beanName的类，就是mbd的类，正在遍历的beanName
 		//typeToMatch要匹配的类型
-		                  //可分配的
+		//Assignable可指定的，可分配的
+		//返回boolean类型，beanType是否是指定的类型typeToMatch
 		return typeToMatch.isAssignableFrom(beanType);
 	}
 

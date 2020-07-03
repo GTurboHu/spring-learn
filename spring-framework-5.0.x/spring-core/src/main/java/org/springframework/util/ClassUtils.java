@@ -87,7 +87,7 @@ public abstract class ClassUtils {
 	private static final Map<Class<?>, Class<?>> primitiveWrapperTypeMap = new IdentityHashMap<>(8);
 
 	/**
-	 * Map with primitive type as key and corresponding wrapper
+	 * Map with primitive type as key and corresponding(对应的) wrapper
 	 * type as value, for example: int.class -> Integer.class.
 	 */
 	private static final Map<Class<?>, Class<?>> primitiveTypeToWrapperMap = new IdentityHashMap<>(8);
@@ -511,6 +511,7 @@ public abstract class ClassUtils {
 	public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");
 		Assert.notNull(rhsType, "Right-hand side type must not be null");
+		//确定两个类是否相同
 		if (lhsType.isAssignableFrom(rhsType)) {
 			return true;
 		}

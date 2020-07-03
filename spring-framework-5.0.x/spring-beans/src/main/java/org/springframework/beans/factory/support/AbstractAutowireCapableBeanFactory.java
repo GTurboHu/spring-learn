@@ -1447,6 +1447,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (pvs != null) {
 			/**将属性应用到bean中，注入到bean中*/
 			//1678行
+			//pvs里边包括实例化两种：
+			//1.配置文件的属性，好像没进行实例化？？？
+			//2.autowireByType的属性是已经实例化完成的，就等着赋值了
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
@@ -1523,6 +1526,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * unsatisfiedNonSimpleProperties方法就是寻找
 		 * bean中的引用属性，不包括int，String这类，这些属于简单属性，也无法自动注入（在配置文件中写可以注入）
 		 * pvs是配置文件中的属性，再加上其他的引用属性（满足一些条件），就可以完成自动注入了
+		 * propertyNames不包括pvs中的值
+		 * propertyNames是变量的名字
 		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
@@ -1547,9 +1552,16 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					 * 其注入
 					 */
 					//resolveDependency是DefaultListableBeanFactory的1048行
+					//传入依赖描述，beanName，需要自动装配的bean集合
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
 						//将获取到的对象放入属性值对象中
+						//pvs是从匹配文件中已经获取的属性
+						//unsatisfiedNonSimpleProperties获取变量的名字
+						//propertyName是当前bean所有有待注入属性的名称，就是变量名
+						//PropertyDescriptor是根据变量的名字获得的属性描述
+						//DependencyDescriptor是根据属性描述获得的依赖描述
+						//autowiredArgument是根据propertyName找到的类型实例
 						pvs.add(propertyName, autowiredArgument);
 					}
 					for (String autowiredBeanName : autowiredBeanNames) {
@@ -1585,6 +1597,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		//获取配置文件中声明的需要注入的属性
 		PropertyValues pvs = mbd.getPropertyValues();
 		//获取类中多个属性描述
+		//这里不包括List属性
 		PropertyDescriptor[] pds = bw.getPropertyDescriptors();
 		for (PropertyDescriptor pd : pds) {
 			if (pd.getWriteMethod() != null && !isExcludedFromDependencyCheck(pd) && !pvs.contains(pd.getName()) &&
