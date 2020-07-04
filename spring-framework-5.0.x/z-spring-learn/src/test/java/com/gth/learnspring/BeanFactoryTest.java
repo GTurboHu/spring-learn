@@ -69,6 +69,7 @@ public class BeanFactoryTest {
 		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("autowiredbynametype.xml"));
 		TestB b = (TestB) bf.getBean("testB");
 		System.out.println(b);
+		System.out.println(b.getTestEList());
 	}
 
 	@Test

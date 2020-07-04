@@ -1473,6 +1473,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * unsatisfiedNonSimpleProperties方法就是寻找
 		 * bean中的引用属性，不包括int，String这类，这些属于简单属性，也无法自动注入（在配置文件中写可以注入）
 		 * pvs是配置文件中的属性，再加上其他的引用属性（满足一些条件），就可以完成自动注入了
+		 * 根据变量名称获取bean
+		 * 变量名称就是beanName
 		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
@@ -1528,6 +1530,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * pvs是配置文件中的属性，再加上其他的引用属性（满足一些条件），就可以完成自动注入了
 		 * propertyNames不包括pvs中的值
 		 * propertyNames是变量的名字
+		 * 根据变量的名字获取变量的一些描述（包括类型信息）
+		 * 然后在根据类型去进行匹配
+		 * 如何比较:遍历beanDefinitionMap，挨个比较类型是否和变量的类型一样。
 		 */
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
@@ -1714,6 +1719,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		if (pvs instanceof MutablePropertyValues) {
 			mpvs = (MutablePropertyValues) pvs;
+			//如果mpvs中的值已经被转化为对应的的类型那么可以直接设置到beanwapper中
 			if (mpvs.isConverted()) {
 				// Shortcut: use the pre-converted values as-is.
 				try {
@@ -1728,6 +1734,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			original = mpvs.getPropertyValueList();
 		}
 		else {
+			//如果pvs并不是使用并不是使用MutablePropertyValues封装的类型，那么直接使用原始的属性获取方法
 			original = Arrays.asList(pvs.getPropertyValues());
 		}
 
@@ -1735,11 +1742,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (converter == null) {
 			converter = bw;
 		}
+		//获取对应的解析器
 		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this, beanName, mbd, converter);
 
 		// Create a deep copy, resolving any references for values.
 		List<PropertyValue> deepCopy = new ArrayList<>(original.size());
 		boolean resolveNecessary = false;
+		//遍历属性，将属性转换为对应类的对应属性的类型
 		for (PropertyValue pv : original) {
 			if (pv.isConverted()) {
 				deepCopy.add(pv);
@@ -1753,6 +1762,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				boolean convertible = bw.isWritableProperty(propertyName) &&
 						!PropertyAccessorUtils.isNestedOrIndexedProperty(propertyName);
 				if (convertible) {
+					//转化属性？？？？
 					convertedValue = convertForProperty(resolvedValue, propertyName, bw, converter);
 				}
 				// Possibly store converted value in merged bean definition,

@@ -16,6 +16,7 @@ public class TestB {
 	private TestC testC;
 	private TestD testD;
 	private List<TestE> testEList;
+	private TestF testF;
 
 	public TestB() {
 	}
@@ -34,5 +35,21 @@ public class TestB {
 
 	public void setTestD(TestD testD) {
 		this.testD = testD;
+	}
+
+	public List<TestE> getTestEList() {
+		return testEList;
+	}
+
+	public void setTestEList(List<TestE> testEList) {
+		this.testEList = testEList;
+	}
+
+	public TestF getTestF() {
+		return testF;
+	}
+
+	public void setTestF(TestF testF) {
+		this.testF = testF;
 	}
 }

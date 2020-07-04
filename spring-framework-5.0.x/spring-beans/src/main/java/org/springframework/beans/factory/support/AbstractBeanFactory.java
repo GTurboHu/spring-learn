@@ -529,6 +529,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		String beanName = transformedBeanName(name);
 
 		// Check manually registered singletons.
+		/**
+		 * 如果遍历bdMap时，有些类已经实例化了，直接从单例池里边拿，然后比较类型
+		 * 类没实例化，就要从beanDefinition里拿出类型信息，在比较
+		 */
 		Object beanInstance = getSingleton(beanName, false);
 		if (beanInstance != null && beanInstance.getClass() != NullBean.class) {
 			if (beanInstance instanceof FactoryBean) {
@@ -604,6 +608,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 		//预测类型返回的是beanName的类，就是mbd的类,是遍历bdMap中类
 		//传入的beanName和mbd是遍历bdMap的，typesToMatch是有待匹配的类型
+		//beanType是beanName对应的Class
 		Class<?> beanType = predictBeanType(beanName, mbd, typesToMatch);
 		if (beanType == null) {
 			return false;

@@ -168,6 +168,7 @@ public abstract class BeanUtils {
 			ReflectionUtils.makeAccessible(ctor);
 			return (KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
 					KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
+														//这里使用反射包的构造器newInstance
 		}
 		catch (InstantiationException ex) {
 			throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
