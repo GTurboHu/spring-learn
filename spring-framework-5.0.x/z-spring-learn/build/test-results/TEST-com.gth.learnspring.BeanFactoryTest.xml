@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-04T02:23:36" hostname="PC-20191010VAVI" time="0.893">
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-04T06:34:04" hostname="PC-20191010VAVI" time="119.977">
   <properties/>
-  <testcase name="testAutowireByType" classname="com.gth.learnspring.BeanFactoryTest" time="0.893"/>
-  <system-out><![CDATA[com.gth.learnspring.TestB@463cac6f
+  <testcase name="testAware" classname="com.gth.learnspring.BeanFactoryTest" time="119.977"/>
+  <system-out><![CDATA[com.gth.learnspring.TestG@487b09b4
+testG
+org.springframework.beans.factory.xml.XmlBeanFactory@7922850c: defining beans [testA,testB,testC,testD,testF,testG]; root of factory hierarchy
+sun.misc.Launcher$AppClassLoader@73d16e93
 null
+null
+用户自定义初始化
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

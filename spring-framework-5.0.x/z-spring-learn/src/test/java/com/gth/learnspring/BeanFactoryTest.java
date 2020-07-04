@@ -73,6 +73,20 @@ public class BeanFactoryTest {
 	}
 
 	@Test
+	public void testAware(){
+		XmlBeanFactory bf = new XmlBeanFactory(new ClassPathResource("testAware.xml"));
+		TestG g = (TestG) bf.getBean("testG");
+		System.out.println(g);
+		System.out.println(g.getBeanName());
+		System.out.println(g.getBeanFactory());
+		System.out.println(g.getClassLoader());
+		System.out.println(g.getApplicationContext());
+		System.out.println(g.getEnvironment());
+		System.out.println(g.getInit());
+
+	}
+
+	@Test
 	public void testABCBean(){
 		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("CircularReference.xml"));
 		TestA testA = (TestA) bf.getBean("testA");

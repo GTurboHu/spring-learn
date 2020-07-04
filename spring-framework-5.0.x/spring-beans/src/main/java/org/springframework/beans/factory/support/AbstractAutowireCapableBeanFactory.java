@@ -672,6 +672,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		try {
 			/**根据scopse注册bean*/
 			//Disposable 一次性的，任意使用的
+			//注册销毁方法
 			registerDisposableBeanIfNecessary(beanName, bean, mbd);
 		}
 		catch (BeanDefinitionValidationException ex) {
@@ -1450,6 +1451,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			//pvs里边包括实例化两种：
 			//1.配置文件的属性，好像没进行实例化？？？
 			//2.autowireByType的属性是已经实例化完成的，就等着赋值了
+			//最终调用到了set方法
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
@@ -1558,6 +1560,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					 */
 					//resolveDependency是DefaultListableBeanFactory的1048行
 					//传入依赖描述，beanName，需要自动装配的bean集合
+					//传入的desc会被转化为Type类型信息
+					//autowiredArgument已经是实例了
 					Object autowiredArgument = resolveDependency(desc, beanName, autowiredBeanNames, converter);
 					if (autowiredArgument != null) {
 						//将获取到的对象放入属性值对象中
@@ -1781,6 +1785,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 				else {
 					resolveNecessary = true;
+					//转化后的属性加到深度复制的对象里边
 					deepCopy.add(new PropertyValue(pv, convertedValue));
 				}
 			}
@@ -1791,6 +1796,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// Set our (possibly massaged) deep copy.
 		try {
+			//将属性写入bw
+			//最终调用到了set方法
 			bw.setPropertyValues(new MutablePropertyValues(deepCopy));
 		}
 		catch (BeansException ex) {
@@ -1839,19 +1846,20 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		if (System.getSecurityManager() != null) {
 			AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
-				/**  */
+				/** 处理aware */
 				invokeAwareMethods(beanName, bean);
 				return null;
 			}, getAccessControlContext());
 		}
 		else {
-			/**对特殊bean处理：Aware、BeanClassLoaderAware、BeanFactoryAware*/
+			/**对特殊bean处理：BeanNameAware、BeanClassLoaderAware、BeanFactoryAware*/
 			invokeAwareMethods(beanName, bean);
 		}
 
 		Object wrappedBean = bean;
 		if (mbd == null || !mbd.isSynthetic()) {
 			/**应用后置处理器*/
+			//如何应用？？？？
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
 
@@ -1866,6 +1874,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (mbd == null || !mbd.isSynthetic()) {
 			/**后置处理器应用*/
+			//如何应用？？？？
 			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
 		}
 
@@ -1921,6 +1930,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 			else {
+				//属性初始化后处理
 				((InitializingBean) bean).afterPropertiesSet();
 			}
 		}
@@ -1930,6 +1940,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (StringUtils.hasLength(initMethodName) &&
 					!(isInitializingBean && "afterPropertiesSet".equals(initMethodName)) &&
 					!mbd.isExternallyManagedInitMethod(initMethodName)) {
+				//调用用户自定义的初始化方法
 				invokeCustomInitMethod(beanName, bean, mbd);
 			}
 		}
@@ -1987,6 +1998,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		else {
 			try {
 				ReflectionUtils.makeAccessible(initMethod);
+				//调用用户自定义初始化方法
 				initMethod.invoke(bean);
 			}
 			catch (InvocationTargetException ex) {

@@ -1,0 +1,7 @@
+$com.gth.learnspring.TestG@487b09b4
+testG
+�org.springframework.beans.factory.xml.XmlBeanFactory@7922850c: defining beans [testA,testB,testC,testD,testF,testG]; root of factory hierarchy
++sun.misc.Launcher$AppClassLoader@73d16e93
+null
+null
+用户自定义初始化
