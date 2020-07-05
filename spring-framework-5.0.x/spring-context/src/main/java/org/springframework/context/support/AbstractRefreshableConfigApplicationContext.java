@@ -79,7 +79,7 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 			this.configLocations = new String[locations.length];
 			for (int i = 0; i < locations.length; i++) {
 				//解析给定路径
-				//125行
+				//126行
 				this.configLocations[i] = resolvePath(locations[i]).trim();
 			}
 		}

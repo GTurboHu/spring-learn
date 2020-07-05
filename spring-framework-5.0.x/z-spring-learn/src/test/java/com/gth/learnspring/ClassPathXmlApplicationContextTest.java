@@ -1,5 +1,6 @@
 package com.gth.learnspring;
 
+import com.gth.applicationcontext.TestACBean;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,9 +15,10 @@ public class ClassPathXmlApplicationContextTest {
 
 	@Test
 	public void testSimpleLoad() {
-		ApplicationContext ac = new ClassPathXmlApplicationContext("");
-
-
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/ApplicationContextTest.xml");
+		TestACBean testACBean = (TestACBean) ac.getBean("testACBean");
+		System.out.println(testACBean);
 	}
 
 

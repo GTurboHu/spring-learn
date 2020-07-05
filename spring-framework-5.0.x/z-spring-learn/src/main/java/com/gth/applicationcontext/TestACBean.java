@@ -8,7 +8,7 @@ import org.springframework.beans.factory.BeanNameAware;
  * @Description:
  */
 
-public class MyTestBean implements BeanNameAware {
+public class TestACBean implements BeanNameAware {
 	private String testStr = "testStr";
 	private String beanName;
 
