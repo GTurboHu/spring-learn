@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gth.learnspring.ClassPathXmlApplicationContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-05T02:00:11" hostname="PC-20191010VAVI" time="0.003">
+  <properties/>
+  <testcase name="testSimpleLoad" classname="com.gth.learnspring.ClassPathXmlApplicationContextTest" time="0.003"/>
+  <system-out><![CDATA[111
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

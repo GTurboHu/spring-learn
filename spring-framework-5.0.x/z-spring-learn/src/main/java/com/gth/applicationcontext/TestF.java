@@ -1,4 +1,4 @@
-package com.gth.learnspring;
+package com.gth.applicationcontext;
 
 /**
  * @Author: Hugt
@@ -7,20 +7,5 @@ package com.gth.learnspring;
  */
 
 public class TestF {
-//	private TestG testG;
-//
-//	public TestF() {
-//	}
-//
-//	public TestF(TestG testG) {
-//		this.testG = testG;
-//	}
-//
-//	public TestG getTestG() {
-//		return testG;
-//	}
-//
-//	public void setTestG(TestG testG) {
-//		this.testG = testG;
-//	}
+
 }

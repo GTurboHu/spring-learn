@@ -1,4 +1,4 @@
-package com.gth.learnspring;
+package com.gth.applicationcontext;
 
 import org.springframework.beans.factory.FactoryBean;
 

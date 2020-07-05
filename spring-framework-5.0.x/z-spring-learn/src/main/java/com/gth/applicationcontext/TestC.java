@@ -1,6 +1,4 @@
-package com.gth.learnspring;
-
-import org.springframework.stereotype.Component;
+package com.gth.applicationcontext;
 
 /**
  * @Author: Hugt
@@ -9,19 +7,9 @@ import org.springframework.stereotype.Component;
  */
 
 public class TestC {
-//	private TestA testA;
 
 	public TestC() {
 	}
 
-//	public TestC(TestA testA) {
-//	}
 
-//	public TestA getTestA() {
-//		return testA;
-//	}
-//
-//	public void setTestA(TestA testA) {
-//		this.testA = testA;
-//	}
 }

@@ -1,7 +1,4 @@
-package com.gth.learnspring;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+package com.gth.applicationcontext;
 
 import java.util.List;
 
