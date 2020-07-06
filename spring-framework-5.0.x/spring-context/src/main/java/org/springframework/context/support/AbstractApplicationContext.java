@@ -520,10 +520,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// 准备刷新上下文环境
 			//设置一些变量初始化一些变量
 			prepareRefresh();
-
+			/**
+			 * 在哪添加了对注解的支持???
+			 * setAutowireCandidateResolver()
+			 * 创建DefaultListableBeanFactory对象时
+			 * AutowireCandidateResolver属性初始化，就已经是new SimpleAutowireCandidateResolver();
+			 */
 			// Tell the subclass to refresh the internal bean factory.
 			// 初始化BeanFactory，并进行XML文件读取
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
 
 			// Prepare the bean factory for use in this context.
 			// 对BeanFactory进行各种功能填充

@@ -132,6 +132,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
+			/**
+			 * 在哪添加了对注解的支持???
+			 * setAutowireCandidateResolver()
+			 */
 			customizeBeanFactory(beanFactory);
 			/**
 			 * 加载beanDefinition
