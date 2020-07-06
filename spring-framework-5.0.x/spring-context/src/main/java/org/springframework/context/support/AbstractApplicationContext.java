@@ -518,6 +518,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
 			// 准备刷新上下文环境
+			//设置一些变量初始化一些变量
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
@@ -530,7 +531,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
-				//子类覆盖方法做额外处理
+				//这是空方法，留给子类覆盖方法做额外处理
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
@@ -550,7 +551,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
-				// 留给子类来初始化其他的bean
+				// 空方法留给子类来初始化其他的bean
 				onRefresh();
 
 				// Check for listener beans and register them.
@@ -643,7 +644,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see #getBeanFactory()
 	 */
 	protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
+		/**
+		 * 这里创建BeanFactory 是 DefaultListableBeanFactory
+		 * 并且加载beanDefinition
+		 */
 		refreshBeanFactory();
+
+		//返回BeanFactory
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 		if (logger.isDebugEnabled()) {
 			logger.debug("Bean factory for " + getDisplayName() + ": " + beanFactory);

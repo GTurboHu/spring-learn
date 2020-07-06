@@ -301,6 +301,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	@Override
 	public int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException {
+		/**
+		 * XmlBeanFactory和ApplicationContext都会使用这个方法来加载beanDefinition
+		 */
 		return loadBeanDefinitions(new EncodedResource(resource));
 		//EncodedResource就比Resource多了两个参数：String encoding Charset charset
 	}

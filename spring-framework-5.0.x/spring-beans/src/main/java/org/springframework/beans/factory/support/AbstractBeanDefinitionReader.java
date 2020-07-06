@@ -191,6 +191,9 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 		Assert.notNull(resources, "Resource array must not be null");
 		int counter = 0;
 		for (Resource resource : resources) {
+			/**
+			 * 进入与XmlBeanFactory一样的步骤
+			 */
 			counter += loadBeanDefinitions(resource);
 		}
 		return counter;
@@ -227,6 +230,9 @@ public abstract class AbstractBeanDefinitionReader implements EnvironmentCapable
 			// Resource pattern matching available.
 			try {
 				Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
+				/**
+				 * 进入与XmlBeanFactory一样的步骤
+				 */
 				int loadCount = loadBeanDefinitions(resources);
 				if (actualResources != null) {
 					for (Resource resource : resources) {

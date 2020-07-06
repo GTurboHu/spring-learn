@@ -127,9 +127,16 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			closeBeanFactory();
 		}
 		try {
+			/**
+			 * 创建一个 new DefaultListableBeanFactory
+			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
 			customizeBeanFactory(beanFactory);
+			/**
+			 * 加载beanDefinition
+			 * 加载流程和XmlBeanFactory相同
+			 */
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
@@ -178,7 +185,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 						"call 'refresh' before accessing beans via the ApplicationContext");
 			}
 			//beanFactory是DefaultListableBeanFactory
-			//什么时候设置进去的
+			//什么时候设置进去的：AbstractApplicationContext的650行refreshBeanFactory
 			return this.beanFactory;
 		}
 	}
