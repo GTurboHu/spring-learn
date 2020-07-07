@@ -26,6 +26,7 @@ public class ClassPathXmlApplicationContextTest {
 	public void testAnno() {
 		ApplicationContext ac =
 				new ClassPathXmlApplicationContext("application/AnnoAutowire.xml");
+//		ApplicationContext采用注解好使，XmlBeanFactoy使用注解不好使，为什么？？？？
 		A a = (A) ac.getBean("a");
 		System.out.println(a);
 		System.out.println(a.getB());

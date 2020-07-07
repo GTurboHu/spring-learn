@@ -1,0 +1,2 @@
+&BeanFactory后处理器：testACBean
+6BeanFactory后处理器：myBeanFactoryPostProcessor

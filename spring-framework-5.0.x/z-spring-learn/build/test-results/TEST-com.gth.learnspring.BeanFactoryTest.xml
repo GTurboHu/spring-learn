@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gth.learnspring.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-07T14:52:50" hostname="PC-20191010VAVI" time="0.94">
+  <properties/>
+  <testcase name="testAutowire" classname="com.gth.learnspring.BeanFactoryTest" time="0.94"/>
+  <system-out><![CDATA[com.gth.learnspring.autowire.LA@3ef885e0
+com.gth.learnspring.autowire.LB@52db99f0
+null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

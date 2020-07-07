@@ -1,5 +1,7 @@
 package com.gth.learnspring;
 
+import com.gth.learnspring.autowire.LA;
+import com.gth.learnspring.autowire.LB;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanCurrentlyInCreationException;
 import org.springframework.beans.factory.BeanFactory;
@@ -92,7 +94,6 @@ public class BeanFactoryTest {
 		TestA testA = (TestA) bf.getBean("testA");
 		TestB testB = (TestB) bf.getBean("testB");
 		TestC testC = (TestC) bf.getBean("testC");
-
 	}
 
 
@@ -110,6 +111,19 @@ public class BeanFactoryTest {
 			Throwable e1 = e.getCause().getCause().getCause();
 			throw e1;
 		}
+	}
+
+	@Test
+	public void testAutowire(){
+		BeanFactory bf = new XmlBeanFactory(new ClassPathResource("AnnoAutowireLearn.xml"));
+		LA la = (LA) bf.getBean("la");
+		LB lb = (LB) bf.getBean("lb");
+		//la获取到了
+		System.out.println(la);
+		System.out.println(lb);
+		//lb没有注入成功，为什么？？？
+		System.out.println(la.getLb());
+
 	}
 
 }
