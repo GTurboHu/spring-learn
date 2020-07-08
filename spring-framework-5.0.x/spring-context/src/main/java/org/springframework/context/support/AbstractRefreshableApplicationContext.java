@@ -142,6 +142,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			 * 加载流程和XmlBeanFactory相同
 			 */
 			loadBeanDefinitions(beanFactory);
+			/**
+			 * 加载完beanDefinition
+			 * beanFactory的autowireCandidateResolver就被转化成了ContextAnnotationAutowireCandidateResolver
+			 */
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
 			}

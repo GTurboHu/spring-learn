@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 最基本的命名空间定义和空间装载 -->
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--	测试<context:annotation-config/>这个注解的作用-->
+		<context:annotation-config/>
+	<bean id="a" class="com.gth.applicationcontext.autowire.A">
+
+	</bean>
+	<bean id="b" class="com.gth.applicationcontext.autowire.B">
+
+	</bean>
+	<bean id="c" class="com.gth.applicationcontext.autowire.C">
+
+	</bean>
+<!--	<context:annotation-config/>这个配置的作用就是，在xml配置了bean，还需要@Autowire注解生效-->
+<!--	如果没有<context:annotation-config/>这个配置，那么@Autowire注解不生效-->
+</beans>

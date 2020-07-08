@@ -1,2 +1,4 @@
-&BeanFactory后处理器：testACBean
-6BeanFactory后处理器：myBeanFactoryPostProcessor
+0com.gth.applicationcontext.autowire.A@43d4b3ee
+0com.gth.applicationcontext.autowire.B@2a369e30
+0com.gth.applicationcontext.autowire.C@21820ac6
+0com.gth.applicationcontext.autowire.B@2a369e30

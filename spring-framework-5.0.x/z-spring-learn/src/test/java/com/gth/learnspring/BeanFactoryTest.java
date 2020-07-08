@@ -1,11 +1,13 @@
 package com.gth.learnspring;
 
+import com.gth.applicationcontext.autowire.A;
 import com.gth.learnspring.autowire.LA;
 import com.gth.learnspring.autowire.LB;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanCurrentlyInCreationException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -124,6 +126,17 @@ public class BeanFactoryTest {
 		//lb没有注入成功，为什么？？？
 		System.out.println(la.getLb());
 
+	}
+
+	@Test
+	public void testAnno() {
+		BeanFactory ac =
+				new XmlBeanFactory(new ClassPathResource("application/AnnoAutowire.xml"));
+//		ApplicationContext采用注解好使，XmlBeanFactoy使用注解不好使，为什么？？？？
+		A a = (A) ac.getBean("a");
+		System.out.println(a);
+		System.out.println(a.getB());
+		System.out.println(a.getC());
 	}
 
 }
