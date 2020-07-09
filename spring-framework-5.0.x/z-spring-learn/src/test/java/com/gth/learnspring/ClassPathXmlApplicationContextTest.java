@@ -32,6 +32,10 @@ public class ClassPathXmlApplicationContextTest {
 	public void testAnnotationConfig() {
 		ApplicationContext ac =
 				new ClassPathXmlApplicationContext("application/annotationconfig.xml");
+		/**
+		 * <context:annotation-config/>这个标签 可以让
+		 * beanFactory的autowireCandidateResolver就被转化成ContextAnnotationAutowireCandidateResolver
+		 */
 		A a = (A) ac.getBean("a");
 		System.out.println(a);
 		System.out.println(a.getB());
@@ -45,6 +49,10 @@ public class ClassPathXmlApplicationContextTest {
 	public void testComponentScan() {
 		ApplicationContext ac =
 				new ClassPathXmlApplicationContext("application/AnnoAutowire.xml");
+		/**
+		 * <context:component-scan base-package="com.gth.applicationcontext.autowire" />这个标签
+		 * beanFactory的autowireCandidateResolver就被转化成ContextAnnotationAutowireCandidateResolver
+		 */
 		A a = (A) ac.getBean("a");
 		System.out.println(a);
 		System.out.println(a.getB());
@@ -56,8 +64,11 @@ public class ClassPathXmlApplicationContextTest {
 	public void testAnnoComponentScan() {
 		// @Configuration注解的spring容器加载方式，用AnnotationConfigApplicationContext替换ClassPathXmlApplicationContext
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentScanConfig.class);
-
-
+		/**
+		 * AnnotationConfigApplicationContext的
+		 * this()构造器完成
+		 * autowireCandidateResolver就已经被初始化为ContextAnnotationAutowireCandidateResolver
+		 */
 		A a = (A) ac.getBean("a");
 		System.out.println(a);
 		System.out.println(a.getB());

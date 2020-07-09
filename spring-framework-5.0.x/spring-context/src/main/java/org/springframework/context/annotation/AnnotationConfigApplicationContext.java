@@ -83,6 +83,10 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
+		/**
+		 * this()构造器完成
+		 * autowireCandidateResolver就已经被初始化为ContextAnnotationAutowireCandidateResolver
+		 */
 		this();
 		register(annotatedClasses);
 		refresh();

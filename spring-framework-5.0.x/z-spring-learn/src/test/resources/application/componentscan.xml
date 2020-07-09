@@ -13,5 +13,6 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 	<context:component-scan base-package="com.gth.applicationcontext.autowire" />
 <!--	那这个配置annotation-config是干什么的？？？？？-->
 <!--	<context:annotation-config/>-->
+<!--	<context:annotation-config/>这个配置的作用就是，在xml配置了bean，还需要@Autowire注解生效-->
 
 </beans>
