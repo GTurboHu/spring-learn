@@ -188,6 +188,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					}
 					else {
 						//用户自定义解析模式
+						//ApplicationContext会走这个
+						//这里解析了具体元素
 						delegate.parseCustomElement(ele);
 					}
 				}

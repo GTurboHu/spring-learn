@@ -150,6 +150,12 @@ public class AnnotationConfigUtils {
 			if (!(beanFactory.getDependencyComparator() instanceof AnnotationAwareOrderComparator)) {
 				beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 			}
+			/**
+			 * 这步beanFactory的autowireCandidateResolver就被转化成ContextAnnotationAutowireCandidateResolver
+			 * 父类 instanceof 子类 为false
+			 * !(xxx instanceof xx) 如果不是ContextAnnotationAutowireCandidateResolver
+			 * 就设置成ContextAnnotationAutowireCandidateResolver
+			 */
 			if (!(beanFactory.getAutowireCandidateResolver() instanceof ContextAnnotationAutowireCandidateResolver)) {
 				beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());
 			}
