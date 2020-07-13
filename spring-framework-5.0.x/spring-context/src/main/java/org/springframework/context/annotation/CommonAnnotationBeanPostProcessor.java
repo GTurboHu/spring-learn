@@ -315,6 +315,10 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 
 		InjectionMetadata metadata = findResourceMetadata(beanName, bean.getClass(), pvs);
 		try {
+			/**
+			 * metadata包含了主对象和属性对象
+			 * 反射调用注入方法
+			 */
 			metadata.inject(bean, beanName, pvs);
 		}
 		catch (Throwable ex) {

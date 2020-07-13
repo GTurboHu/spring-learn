@@ -371,6 +371,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 		try {
 			/**
 			 * 此处实现属性注入
+			 * metadata包含了主对象和属性对象
+			 * 反射调用注入方法
 			 */
 			metadata.inject(bean, beanName, pvs);
 		}

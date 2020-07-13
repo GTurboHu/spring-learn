@@ -1206,7 +1206,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// No special handling: simply use no-arg constructor.
-		/**使用默认的无参构造器*/
+		/**使用默认的无参构造器反射实例化*/
 		// instantiateBean方法在1278+行
 		return instantiateBean(beanName, mbd);
 	}
@@ -1303,6 +1303,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						getAccessControlContext());
 			}
 			else {
+				/**
+				 * 虽然是调用CglibSubclassingInstantiationStrategy
+				 * 但是子类并没有instantiate方法
+				 * 父类才有这个方法，父类：SimpleInstantiationStrategy
+				 * instantiate反射调用
+				 */
 				beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent);
 			}
 			BeanWrapper bw = new BeanWrapperImpl(beanInstance);
@@ -1396,7 +1402,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		//PropertyValues是接口
 		//MutablePropertyValues是PropertyValues的实现类
 
-		//自动装配模式
+		/**
+		 * xml配置文件的自动装配模式
+		 * 注解不会进入这里，注解会使用后处理器来处理
+		 */
 		int resolvedAutowireMode = mbd.getResolvedAutowireMode();
 		if (resolvedAutowireMode == AUTOWIRE_BY_NAME || resolvedAutowireMode == AUTOWIRE_BY_TYPE) {
 			MutablePropertyValues newPvs = new MutablePropertyValues(pvs);
@@ -1432,6 +1441,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					if (bp instanceof InstantiationAwareBeanPostProcessor) {
 						InstantiationAwareBeanPostProcessor ibp = (InstantiationAwareBeanPostProcessor) bp;
 						//对所有需要的依赖检查的属性进行后处理
+						/**
+						 * @Resource(name = "xxx") 注解是CommonAnnotationBeanPostProcessor注入的，反射
+						 * @Autowired 注解是AutowiredAnnotationBeanPostProcessor注入的，反射
+						 */
 						pvs = ibp.postProcessPropertyValues(pvs, filteredPds, bw.getWrappedInstance(), beanName);
 						if (pvs == null) {
 							return;

@@ -88,7 +88,7 @@ public class InjectionMetadata {
 					logger.debug("Processing injected element of bean '" + beanName + "': " + element);
 				}
 				/**
-				 * 此处实现属性注入
+				 * 此处实现反射属性注入
 				 */
 				element.inject(target, beanName, pvs);
 			}
@@ -179,6 +179,7 @@ public class InjectionMetadata {
 
 			if (this.isField) {
 				Field field = (Field) this.member;
+				//将属性变成可访问
 				ReflectionUtils.makeAccessible(field);
 				field.set(target, getResourceToInject(target, requestingBeanName));
 			}
