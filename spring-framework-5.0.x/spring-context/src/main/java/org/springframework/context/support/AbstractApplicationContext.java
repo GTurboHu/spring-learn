@@ -544,6 +544,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 激活各种BeanFactory处理器
 				//这里已经加载完所有beanDefinition
 				//如果需要一些处理，可以继承BeanFactoryPostProcessor
+				/**
+				 * BeanFactoryPostProcessors是ApplicationContext的一个List属性
+				 * 能够针对BeanFactory做一些处理
+				 *
+				 * BeanPostProcessors是BeanFactory的一个List属性
+				 * 能够针对一些Bean做处理
+				 */
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
@@ -621,6 +628,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		// 获取环境变量，验证必须存在的环境变量，若没有，则报错
+		// 验证需要的属性文件是否都已经存放到环境中
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
@@ -675,12 +683,31 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		// Tell the internal bean factory to use the context's class loader etc.
+		/**
+		 * 设置beanFactory的classLoader为当前context的classLoader
+		 */
 		beanFactory.setBeanClassLoader(getClassLoader());
+		/**
+		 * 设置beanFactory的表达语言处理器，spring3增加了表达式语言的支持
+		 */
 		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
+		/**
+		 * 为beanFactory增加了一个默认的propertyEditor，这个主要是对bean的属性等设置管理的一个工具
+		 */
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
 
 		// Configure the bean factory with context callbacks.
+		/**
+		 * 添加beanPostProcessor
+		 * ApplicationContextAwareProcessor这个后处理器可以让bean注入一堆Aware（如果继承）
+		 */
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+		/**
+		 * 设置几个忽略自动装配的接口
+		 * ApplicationContextAwareProcessor经过这个处理器
+		 * bean会有Aware的set方法，都已经通过后处理器set设置了，
+		 * 那么依赖注入的时候，不需要注入这些Aware，设置忽略
+		 */
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
 		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
@@ -690,6 +717,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// BeanFactory interface not registered as resolvable type in a plain factory.
 		// MessageSource registered (and found for autowiring) as a bean.
+		/**
+		 * 设置几个自动装配的特殊规则
+		 * 如果bean中有BeanFactory.class，ResourceLoader.class，ApplicationEventPublisher.class，ApplicationContext.class
+		 * 这些依赖时，就会进行自动注入
+		 */
 		beanFactory.registerResolvableDependency(BeanFactory.class, beanFactory);
 		beanFactory.registerResolvableDependency(ResourceLoader.class, this);
 		beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
@@ -699,6 +731,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(this));
 
 		// Detect a LoadTimeWeaver and prepare for weaving, if found.
+		/**
+		 * 增加对AspectJ的支持
+		 */
 		if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
 			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
 			// Set a temporary ClassLoader for type matching.
@@ -706,6 +741,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Register default environment beans.
+		/**
+		 * 向beanFactory的singletonObjects中添加系统环境bean
+		 */
 		if (!beanFactory.containsLocalBean(ENVIRONMENT_BEAN_NAME)) {
 			beanFactory.registerSingleton(ENVIRONMENT_BEAN_NAME, getEnvironment());
 		}
@@ -733,6 +771,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * <p>Must be called before singleton instantiation.
 	 */
 	protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
+
 		PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
 
 		// Detect a LoadTimeWeaver and prepare for weaving, if found in the meantime

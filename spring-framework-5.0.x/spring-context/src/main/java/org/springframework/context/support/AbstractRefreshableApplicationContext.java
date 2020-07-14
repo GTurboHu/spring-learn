@@ -131,8 +131,12 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			 * 创建一个 new DefaultListableBeanFactory
 			 */
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
+			/**
+			 * 为序列化指定id，如果需要的话，让这个BeanFactory从id反序列化到BeanFactory对象
+			 */
 			beanFactory.setSerializationId(getId());
 			/**
+			 * 定制BeanFactory
 			 * 在哪添加了对注解的支持???
 			 * setAutowireCandidateResolver()
 			 */
@@ -239,9 +243,16 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * @see DefaultListableBeanFactory#setAllowEagerClassLoading
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
+		/**
+		 * 是否允许覆盖同名称的不同定义的对象
+		 */
 		if (this.allowBeanDefinitionOverriding != null) {
 			beanFactory.setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);
 		}
+
+		/**
+		 * 是否允许bean之间存在循环引用
+		 */
 		if (this.allowCircularReferences != null) {
 			beanFactory.setAllowCircularReferences(this.allowCircularReferences);
 		}

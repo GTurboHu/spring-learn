@@ -88,11 +88,17 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
 		if (acc != null) {
 			AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
+				/**
+				 * 注入一堆Aware类（如果继承了）
+				 */
 				invokeAwareInterfaces(bean);
 				return null;
 			}, acc);
 		}
 		else {
+			/**
+			 * 注入一堆Aware类（如果继承了）
+			 */
 			invokeAwareInterfaces(bean);
 		}
 

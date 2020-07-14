@@ -84,8 +84,8 @@ public class BeanFactoryTest {
 		System.out.println(g.getBeanName());
 		System.out.println(g.getBeanFactory());
 		System.out.println(g.getClassLoader());
-		System.out.println(g.getApplicationContext());
-		System.out.println(g.getEnvironment());
+		System.out.println(g.getApplicationContext());//空
+		System.out.println(g.getEnvironment());//空
 		System.out.println(g.getInit());
 
 	}
