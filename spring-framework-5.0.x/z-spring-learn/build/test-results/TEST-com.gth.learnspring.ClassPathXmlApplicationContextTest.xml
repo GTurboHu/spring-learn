@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gth.learnspring.ClassPathXmlApplicationContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-16T15:08:30" hostname="PC-20191010VAVI" time="1.313">
+  <properties/>
+  <testcase name="testComponentScan" classname="com.gth.learnspring.ClassPathXmlApplicationContextTest" time="1.313"/>
+  <system-out><![CDATA[com.gth.applicationcontext.autowire.A@2e3646de
+com.gth.applicationcontext.autowire.B@1eb55a0a
+com.gth.applicationcontext.autowire.C@33780f79
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
