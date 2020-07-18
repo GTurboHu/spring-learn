@@ -133,9 +133,15 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 		for (final ApplicationListener<?> listener : getApplicationListeners(event, type)) {
 			Executor executor = getTaskExecutor();
 			if (executor != null) {
+				/**
+				 * 调用监听器事件
+				 */
 				executor.execute(() -> invokeListener(listener, event));
 			}
 			else {
+				/**
+				 * 调用监听器事件
+				 */
 				invokeListener(listener, event);
 			}
 		}
@@ -155,6 +161,9 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 		ErrorHandler errorHandler = getErrorHandler();
 		if (errorHandler != null) {
 			try {
+				/**
+				 * 调用监听器事件
+				 */
 				doInvokeListener(listener, event);
 			}
 			catch (Throwable err) {
@@ -162,6 +171,9 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 			}
 		}
 		else {
+			/**
+			 * 调用监听器事件
+			 */
 			doInvokeListener(listener, event);
 		}
 	}
@@ -169,6 +181,9 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	private void doInvokeListener(ApplicationListener listener, ApplicationEvent event) {
 		try {
+			/**
+			 * 调用监听器事件
+			 */
 			listener.onApplicationEvent(event);
 		}
 		catch (ClassCastException ex) {

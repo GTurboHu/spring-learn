@@ -566,6 +566,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Multicaster:多播器
 				/**
 				 * 观察者模式
+				 * 事件广播器负责把事件推送给监听器
 				 */
 				initApplicationEventMulticaster();
 
@@ -575,10 +576,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 				// Check for listener beans and register them.
 				//在所注册的bean中查找Listener bean，注册到消息广播器中
+				/**
+				 * 观察者模式
+				 * 注册监听器
+				 */
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
 				// 初始化剩下的单实例(非惰性的)
+				// 如果创建和配置bean出现问题，则能够更好的发现定位问题
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.
@@ -836,6 +842,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void initApplicationEventMulticaster() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+		/**
+		 * 如果用户自定义了事件广播器，则使用用户定义的事件广播器
+		 */
 		if (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) {
 			this.applicationEventMulticaster =
 					beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
@@ -844,6 +853,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			}
 		}
 		else {
+			/**
+			 * 如果用户没自定义事件广播器，则使用默认的SimpleApplicationEventMulticaster
+			 */
 			this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
 			beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, this.applicationEventMulticaster);
 			if (logger.isDebugEnabled()) {
@@ -898,12 +910,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void registerListeners() {
 		// Register statically specified listeners first.
+		/**
+		 * 硬编码方式注册的监听器处理
+		 */
 		for (ApplicationListener<?> listener : getApplicationListeners()) {
 			getApplicationEventMulticaster().addApplicationListener(listener);
 		}
 
 		// Do not initialize FactoryBeans here: We need to leave all regular beans
 		// uninitialized to let post-processors apply to them!
+		/**
+		 * 配置文件注册的监听器处理
+		 */
 		String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false);
 		for (String listenerBeanName : listenerBeanNames) {
 			getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
@@ -965,12 +983,22 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		clearResourceCaches();
 
 		// Initialize lifecycle processor for this context.
+		/**
+		 * 初始化LifecycleProcessor
+		 */
 		initLifecycleProcessor();
 
 		// Propagate refresh to lifecycle processor first.
+		/**
+		 * 启动所有继承了SmartLifecycle的bean
+		 */
 		getLifecycleProcessor().onRefresh();
 
 		// Publish the final event.
+		/**
+		 * spring的ApplicationContext初始化完毕事件
+		 * 还是让广播器来推送事件给监听器
+		 */
 		publishEvent(new ContextRefreshedEvent(this));
 
 		// Participate in LiveBeansView MBean, if active.

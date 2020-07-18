@@ -4,6 +4,7 @@ import com.gth.applicationcontext.TestACBean;
 import com.gth.applicationcontext.autowire.A;
 import com.gth.applicationcontext.autowire.B;
 import com.gth.applicationcontext.config.ComponentScanConfig;
+import com.gth.applicationcontext.listener.TestEvent;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -97,5 +98,12 @@ public class ClassPathXmlApplicationContextTest {
 		System.out.println(a1.getC());
 	}
 
+	@Test
+	public void testListener(){
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/EventListener.xml");
+		TestEvent testEvent = new TestEvent("hello","msg");
+		ac.publishEvent(testEvent);
+	}
 
 }
