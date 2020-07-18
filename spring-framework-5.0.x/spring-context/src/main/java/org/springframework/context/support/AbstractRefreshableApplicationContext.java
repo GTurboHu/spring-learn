@@ -144,6 +144,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			/**
 			 * 加载beanDefinition
 			 * 加载流程和XmlBeanFactory相同
+			 * componentScan扫描包什么时候扫描的？？？
+			 * 就是这步扫描包并且解析成beanDefinition，放到bdMap中
 			 */
 			loadBeanDefinitions(beanFactory);
 			/**

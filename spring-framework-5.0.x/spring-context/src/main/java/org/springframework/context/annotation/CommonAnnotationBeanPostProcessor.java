@@ -312,7 +312,13 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 	@Override
 	public PropertyValues postProcessPropertyValues(
 			PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) {
-
+			//属性值				//属性描述				//要被注入属性的类		//要被注入属性的类的名称
+		/**
+		 * 找到要注入的属性
+		 * @Resource 注解标注的属性
+		 * injectionMetadataCache这个属性是什么时候添加的
+		 * 获取到的InjectionMetadata就是从injectionMetadataCache中拿到的
+		 */
 		InjectionMetadata metadata = findResourceMetadata(beanName, bean.getClass(), pvs);
 		try {
 			/**
@@ -332,6 +338,11 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 		// Fall back to class name as cache key, for backwards compatibility with custom callers.
 		String cacheKey = (StringUtils.hasLength(beanName) ? beanName : clazz.getName());
 		// Quick check on the concurrent map first, with minimal locking.
+		/**
+		 * injectionMetadataCache是一个Map，是什么时候添加数据的
+		 * 属性就是从这里injectionMetadataCache拿出来的
+		 * 什么时候往里边放的呢？？？
+		 */
 		InjectionMetadata metadata = this.injectionMetadataCache.get(cacheKey);
 		if (InjectionMetadata.needsRefresh(metadata, clazz)) {
 			synchronized (this.injectionMetadataCache) {
@@ -486,6 +497,9 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 			throw new NoSuchBeanDefinitionException(element.lookupType,
 					"No resource factory configured - specify the 'resourceFactory' property");
 		}
+		/**
+		 * 先从工厂中获取，实例化后再返回然后注入其他Bean中
+		 */
 		return autowireResource(this.resourceFactory, element, requestingBeanName);
 	}
 
@@ -515,6 +529,9 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 			}
 		}
 		else {
+			/**
+			 * 先从工厂中获取，实例化后再返回然后注入其他Bean中
+			 */
 			resource = factory.getBean(name, element.lookupType);
 			autowiredBeanNames = Collections.singleton(name);
 		}
@@ -621,6 +638,9 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 		protected Object getResourceToInject(Object target, @Nullable String requestingBeanName) {
 			return (this.lazyLookup ? buildLazyResourceProxy(this, requestingBeanName) :
 					getResource(this, requestingBeanName));
+			/**
+			 * getResource()先从工厂中获取，实例化后再返回然后注入其他Bean中
+			 */
 		}
 	}
 

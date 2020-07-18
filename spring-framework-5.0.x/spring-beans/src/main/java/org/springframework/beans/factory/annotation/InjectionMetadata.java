@@ -82,6 +82,9 @@ public class InjectionMetadata {
 		Collection<InjectedElement> checkedElements = this.checkedElements;
 		Collection<InjectedElement> elementsToIterate =
 				(checkedElements != null ? checkedElements : this.injectedElements);
+		/**
+		 * 遍历注入属性
+		 */
 		if (!elementsToIterate.isEmpty()) {
 			for (InjectedElement element : elementsToIterate) {
 				if (logger.isDebugEnabled()) {
@@ -181,6 +184,10 @@ public class InjectionMetadata {
 				Field field = (Field) this.member;
 				//将属性变成可访问
 				ReflectionUtils.makeAccessible(field);
+				/**
+				 * getResourceToInject()先从工厂中获取，实例化后再注入target中
+				 * field.set()已经是反射方法了
+				 */
 				field.set(target, getResourceToInject(target, requestingBeanName));
 			}
 			else {

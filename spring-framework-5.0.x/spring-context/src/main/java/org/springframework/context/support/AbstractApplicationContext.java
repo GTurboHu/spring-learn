@@ -527,9 +527,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			 * AutowireCandidateResolver属性初始化，就已经是new SimpleAutowireCandidateResolver();
 			 */
 			// Tell the subclass to refresh the internal bean factory.
-			// 初始化BeanFactory，并进行XML文件读取
+			// 初始化BeanFactory，并进行XML文件读取Bean
+			// componentScan扫描包在什么阶段扫描的
+			/**
+			 * 加载完beanDefinition
+			 * beanFactory的autowireCandidateResolver就被转化成了ContextAnnotationAutowireCandidateResolver
+			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
-
+			/**
+			 * obtainFreshBeanFactory结束
+			 * bdMap中就已经有了很多工作Bean和其他Bean
+			 */
 
 			// Prepare the bean factory for use in this context.
 			// 对BeanFactory进行各种功能填充
@@ -550,6 +558,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				 *
 				 * BeanPostProcessors是BeanFactory的一个List属性
 				 * 能够针对一些Bean做处理
+				 *
 				 */
 				invokeBeanFactoryPostProcessors(beanFactory);
 
@@ -585,6 +594,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Instantiate all remaining (non-lazy-init) singletons.
 				// 初始化剩下的单实例(非惰性的)
 				// 如果创建和配置bean出现问题，则能够更好的发现定位问题
+				/**
+				 * 工作Bean会在这实例化，其他的后处理器Bean会在这之前实例化
+				 */
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.

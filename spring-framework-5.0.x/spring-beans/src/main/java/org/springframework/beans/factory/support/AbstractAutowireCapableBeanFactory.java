@@ -1397,7 +1397,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 		}
-		//从配置文件中获取属性值
+		//从配置文件中获取已配置的属性值
 		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
 		//PropertyValues是接口
 		//MutablePropertyValues是PropertyValues的实现类
@@ -1427,6 +1427,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// 后置处理器已经初始化
+		/**
+		 * 初始化察觉后处理器
+		 */
 		boolean hasInstAwareBpps = hasInstantiationAwareBeanPostProcessors();
 		// 需要依赖检查
 		boolean needsDepCheck = (mbd.getDependencyCheck() != AbstractBeanDefinition.DEPENDENCY_CHECK_NONE);
