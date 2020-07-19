@@ -23,8 +23,15 @@ public class A {
 	@Autowired
 	private B b;
 
-	@Resource(name = "c")
+	@Autowired
 	private C c;
+
+	@Resource(name = "d")
+	private D d;
+
+	@Resource(name = "e")
+	private E e;
+
 
 	public B getB() {
 		return b;

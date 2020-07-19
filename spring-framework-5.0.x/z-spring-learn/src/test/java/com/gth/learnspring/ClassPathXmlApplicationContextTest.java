@@ -3,8 +3,11 @@ package com.gth.learnspring;
 import com.gth.applicationcontext.TestACBean;
 import com.gth.applicationcontext.autowire.A;
 import com.gth.applicationcontext.autowire.B;
+import com.gth.applicationcontext.circle.CircleA;
+import com.gth.applicationcontext.circle.CircleB;
 import com.gth.applicationcontext.config.ComponentScanConfig;
 import com.gth.applicationcontext.listener.TestEvent;
+import javafx.scene.shape.Circle;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -106,4 +109,26 @@ public class ClassPathXmlApplicationContextTest {
 		ac.publishEvent(testEvent);
 	}
 
+	@Test
+	public void testCircle(){
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/circle.xml");
+		CircleA circleA = (CircleA) ac.getBean("circleA");
+		CircleB circleB = (CircleB) ac.getBean("circleB");
+		System.out.println("circleA:"+circleA);
+		System.out.println("circleA中的属性:"+circleA.getCircleB());
+		System.out.println("circleB:"+circleB);
+		System.out.println("circleB中的属性:"+circleB.getCircleA());
+
+	}
+
 }
+
+
+
+
+
+
+
+
+

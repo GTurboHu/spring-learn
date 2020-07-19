@@ -542,6 +542,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Prepare the bean factory for use in this context.
 			// 对BeanFactory进行各种功能填充
 			prepareBeanFactory(beanFactory);
+			/**
+			 * systemEnvironment，environment，systemProperties
+			 *    系统环境，          环境，        系统属性，
+			 * 在这个方法之后注入了BeanFactory的singletonObjects
+			 */
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
@@ -561,10 +566,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				 *
 				 */
 				invokeBeanFactoryPostProcessors(beanFactory);
+				/**
+				 * 多种BeanPostProcess在这个方法之后注入了BeanFactory的singletonObjects
+				 */
 
 				// Register bean processors that intercept bean creation.
 				// 注册拦截Bean创建的Bean处理器，这里只是注册，真正调用的是在getBean的时候
 				registerBeanPostProcessors(beanFactory);
+				/**
+				 * 多种BeanPostProcess（和注解@Autowired，@Resource相关的BeanPostProcessor）在这个方法之后注入了BeanFactory的singletonObjects
+				 */
 
 				// Initialize message source for this context.
 				// 为上下文初始化message源，即不同语言的消息体，国际化处理
