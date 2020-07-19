@@ -736,7 +736,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		// Trigger initialization of all non-lazy singleton beans...
 		for (String beanName : beanNames) {
 			/**
-			 * 遍历bds
+			 * 遍历bdNames
 			 * 实例化bd
 			 */
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
@@ -1054,7 +1054,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,
 			@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
-		//被AbstractAutowireCapableBeanFactory类的autowireByTyp方法的1505行调用
+		// 被AbstractAutowireCapableBeanFactory类的autowireByType方法的1586行调用(配置文件autowireByType方式注入)
+		// 被AutowiredAnnotationBeanPostProcessor类的inject方法602行调用(@Autowired 方式注入)
 
 		descriptor.initParameterNameDiscovery(getParameterNameDiscoverer());
 		if (Optional.class == descriptor.getDependencyType()) {
@@ -1077,6 +1078,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				//通用处理逻辑
 				//1075行
 				//传入依赖描述，当前bean的beanName，需要自动装配的bean的集合
+				/**
+				 * autowireByType方法是配置文件的方式会进入这个方法
+				 * 被@Autowired 注解的后处理器调用
+				 * AutowiredAnnotationBeanPostProcessor也会进入这个方法
+				 */
 				result = doResolveDependency(descriptor, requestingBeanName, autowiredBeanNames, typeConverter);
 			}
 			return result;
@@ -1086,7 +1092,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	public Object doResolveDependency(DependencyDescriptor descriptor, @Nullable String beanName,
 			@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
-		//被1068行调用
+		//被1081行调用
+		/**
+		 * autowireByType方法是配置文件的方式会进入这个方法
+		 * 被@Autowired 注解的后处理器调用
+		 * AutowiredAnnotationBeanPostProcessor也会进入这个方法
+		 */
 
 		InjectionPoint previousInjectionPoint = ConstructorResolver.setCurrentInjectionPoint(descriptor);
 		try {
@@ -1168,9 +1179,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 
 			if (instanceCandidate instanceof Class) {
-				//如果instanceCandidate是Class类型
-				//就需要获取实例
-				//通过getBean方法获取bean实例
+				/**
+				 * 如果instanceCandidate是Class类型
+				 * 就需要获取实例
+				 * 通过getBean方法获取bean实例
+				 */
 				instanceCandidate = descriptor.resolveCandidate(autowiredBeanName, type, this);
 			}
 			//把实例赋值给result，并返回

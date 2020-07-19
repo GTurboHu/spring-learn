@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gth.learnspring.ClassPathXmlApplicationContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-19T04:00:04" hostname="PC-20191010VAVI" time="303.458">
+<testsuite name="com.gth.learnspring.ClassPathXmlApplicationContextTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-19T07:50:40" hostname="PC-20191010VAVI" time="1458.095">
   <properties/>
-  <testcase name="testCircle" classname="com.gth.learnspring.ClassPathXmlApplicationContextTest" time="303.458"/>
-  <system-out><![CDATA[circleA:com.gth.applicationcontext.circle.CircleA@55f32da6
-circleA中的属性:com.gth.applicationcontext.circle.CircleB@34161f4e
-circleB:com.gth.applicationcontext.circle.CircleB@34161f4e
-circleB中的属性:com.gth.applicationcontext.circle.CircleA@55f32da6
+  <testcase name="testCircle" classname="com.gth.learnspring.ClassPathXmlApplicationContextTest" time="1458.095"/>
+  <system-out><![CDATA[circleA:com.gth.applicationcontext.circle.CircleA@1fdc86a7
+circleA中的属性:com.gth.applicationcontext.circle.CircleB@7a784a5c
+circleB:com.gth.applicationcontext.circle.CircleB@7a784a5c
+circleB中的属性:com.gth.applicationcontext.circle.CircleA@1fdc86a7
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

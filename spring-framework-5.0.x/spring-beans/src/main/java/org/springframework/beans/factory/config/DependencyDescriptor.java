@@ -247,7 +247,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	 */
 	public Object resolveCandidate(String beanName, Class<?> requiredType, BeanFactory beanFactory)
 			throws BeansException {
-
+		/**
+		 * autowireByType方法是配置文件的方式会进入这个方法
+		 * 被@Autowired 注解的后处理器调用
+		 * AutowiredAnnotationBeanPostProcessor也会进入这个方法
+		 * getBean()获取对象
+		 */
 		return beanFactory.getBean(beanName);
 	}
 

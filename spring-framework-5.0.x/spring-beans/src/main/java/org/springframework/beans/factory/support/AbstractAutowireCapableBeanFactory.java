@@ -957,6 +957,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
 		Object exposedObject = bean;
+		//mbd不是用户定义的？？？不太对呀    //有初始化察觉后处理器
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			//getBeanPostProcessors在AbstractBeanFactory的911行
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
@@ -1308,6 +1309,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				 * 但是子类并没有instantiate方法
 				 * 父类才有这个方法，父类：SimpleInstantiationStrategy
 				 * instantiate反射调用
+				 * 策略模式
 				 */
 				beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent);
 			}
@@ -1418,7 +1420,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// Add property values based on autowire by type if applicable.
 			/**根据类型自动注入*/
 			if (resolvedAutowireMode == AUTOWIRE_BY_TYPE) {
-				//1499行
+				//1538行
 				autowireByType(beanName, mbd, bw, newPvs);
 			}
 			// 以上的autowire，只是找到属性（没有的话就先实例化？？？），
@@ -1429,6 +1431,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 后置处理器已经初始化
 		/**
 		 * 初始化察觉后处理器
+		 * 注解注入的会使用后处理器来处理
+		 * 从这里开始是注解的
+		 * @Autowired
+		 * @Resource
 		 */
 		boolean hasInstAwareBpps = hasInstantiationAwareBeanPostProcessors();
 		// 需要依赖检查
@@ -1574,7 +1580,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					 * @Autowired private List<A> aList;将会找到所匹配A类型的bean并将
 					 * 其注入
 					 */
-					//resolveDependency是DefaultListableBeanFactory的1048行
+					//resolveDependency是DefaultListableBeanFactory的1055行
 					//传入依赖描述，beanName，需要自动装配的bean集合
 					//传入的desc会被转化为Type类型信息
 					//autowiredArgument已经是实例了

@@ -567,7 +567,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				 */
 				invokeBeanFactoryPostProcessors(beanFactory);
 				/**
-				 * 多种BeanPostProcess在这个方法之后注入了BeanFactory的singletonObjects
+				 * 多种PostProcess(不知道是什么类型的PostProcessor)的在这个方法之后注入了BeanFactory的singletonObjects
+				 * ConfigurationClassPostProcessor
+				 * ConfigurationClassParse$ImportStack
 				 */
 
 				// Register bean processors that intercept bean creation.
@@ -575,6 +577,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				registerBeanPostProcessors(beanFactory);
 				/**
 				 * 多种BeanPostProcess（和注解@Autowired，@Resource相关的BeanPostProcessor）在这个方法之后注入了BeanFactory的singletonObjects
+				 * CommonAnnotationBeanPostProcessor
+				 * AutowiredAnnotationBeanPostProcessor
+				 * RequiredAnnotationBeanPostProcessor
 				 */
 
 				// Initialize message source for this context.

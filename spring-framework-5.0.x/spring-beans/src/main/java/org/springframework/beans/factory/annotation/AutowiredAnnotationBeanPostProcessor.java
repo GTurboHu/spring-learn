@@ -377,6 +377,8 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			/**
 			 * 此处实现属性注入
 			 * metadata包含了主对象和属性对象
+			 * 里边会调用这个方法 resolveDependency()
+			 * autowireByType 里也会调用这个方法 resolveDependency()
 			 * 反射调用注入方法
 			 */
 			metadata.inject(bean, beanName, pvs);
@@ -578,19 +580,40 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 
 		@Override
 		protected void inject(Object bean, @Nullable String beanName, @Nullable PropertyValues pvs) throws Throwable {
+			/**
+			 * this.member就是属性（bean的有个属性是member）
+			 * 里边包含了Class对象
+			 */
 			Field field = (Field) this.member;
 			Object value;
 			if (this.cached) {
 				value = resolvedCachedArgument(beanName, this.cachedFieldValue);
 			}
 			else {
+				/**
+				 * 将field转化成desc
+				 * desc里边包含Class信息
+				 */
 				DependencyDescriptor desc = new DependencyDescriptor(field, this.required);
 				desc.setContainingClass(bean.getClass());
 				Set<String> autowiredBeanNames = new LinkedHashSet<>(1);
 				Assert.state(beanFactory != null, "No BeanFactory available");
 				TypeConverter typeConverter = beanFactory.getTypeConverter();
 				try {
+					/**
+					 * @Autowired 注解
+					 * 处理依赖，按照类型寻找被注入的属性
+					 * beanName是当前对象
+					 * desc是当前对象的属性
+					 * autowireByType 里也会调用这个方法 resolveDependency()
+					 * beanName是当前类
+					 * desc是属性
+					 * autowiredBeanNames是当前类的属性名列表
+					 */
 					value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);
+					/**
+					 * value已经是实例化之后的对象了
+					 */
 				}
 				catch (BeansException ex) {
 					throw new UnsatisfiedDependencyException(null, beanName, new InjectionPoint(field), ex);

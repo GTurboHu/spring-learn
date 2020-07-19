@@ -92,6 +92,9 @@ public class InjectionMetadata {
 				}
 				/**
 				 * 此处实现反射属性注入
+				 * 里边会调用这个方法 resolveDependency()
+				 * autowireByType 里也会调用这个方法 resolveDependency()
+				 * element是属性，target书目标对象，beanName是目标对象的名称
 				 */
 				element.inject(target, beanName, pvs);
 			}
