@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 最基本的命名空间定义和空间装载 -->
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--	<context:component-scan base-package="com.gth.applicationcontext.circle" />-->
+	<bean id="ccA" class="com.gth.applicationcontext.constructorcircle.CcA">
+		<constructor-arg index="0" ref="ccB"></constructor-arg>
+	</bean>
+	<bean id="ccB" class="com.gth.applicationcontext.constructorcircle.CcB">
+		<constructor-arg index="0" ref="ccA"></constructor-arg>
+	</bean>
+
+</beans>

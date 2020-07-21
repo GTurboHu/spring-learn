@@ -171,6 +171,9 @@ class ConstructorResolver {
 				resolvedValues = new ConstructorArgumentValues();
 				//resolveConstructorArguments方法在616行左右
 				//能解析到的参数个数
+				/**
+				 * 解析参数，并且实例化参数，如果有循环依赖，直接抛异常
+				 */
 				minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValues);
 				//经过这个方法之后resolvedValues就有值了，并且是配置文件中的参数
 			}
@@ -674,8 +677,13 @@ class ConstructorResolver {
 				resolvedValues.addIndexedArgumentValue(index, valueHolder);
 			}
 			else {
+				/**
+				 * 解析参数
+				 * 就是getBean方法
+				 */
 				Object resolvedValue =
 						valueResolver.resolveValueIfNecessary("constructor argument", valueHolder.getValue());
+
 				ConstructorArgumentValues.ValueHolder resolvedValueHolder =
 						new ConstructorArgumentValues.ValueHolder(resolvedValue, valueHolder.getType(), valueHolder.getName());
 				resolvedValueHolder.setSource(valueHolder);

@@ -12,14 +12,21 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!--<constructor-arg index="" ref=""/>这是构造器注入模式，循环依赖无法解决，只能抛出异常	-->
 <!--	应为类还没初始化完成呢，只是在实例化构造器参数阶段，就会造成循环引用，但是对象并没有实例化完成，只能抛出异常-->
-	<bean id="testE" class="com.gth.learnspring.TestE">
-		<constructor-arg index="0" ref="testF"></constructor-arg>
+<!--	<bean id="testE" class="com.gth.learnspring.TestE">-->
+<!--		<constructor-arg index="0" ref="testF"></constructor-arg>-->
+<!--	</bean>-->
+<!--	<bean id="testF" class="com.gth.learnspring.TestF">-->
+<!--		<constructor-arg index="0" ref="testG"></constructor-arg>-->
+<!--	</bean>-->
+<!--	<bean id="testG" class="com.gth.learnspring.TestG">-->
+<!--		<constructor-arg index="0" ref="testE"></constructor-arg>-->
+<!--	</bean>-->
+
+	<bean id="testI" class="com.gth.learnspring.TestI">
+		<constructor-arg index="0" ref="testJ"></constructor-arg>
 	</bean>
-	<bean id="testF" class="com.gth.learnspring.TestF">
-		<constructor-arg index="0" ref="testG"></constructor-arg>
-	</bean>
-	<bean id="testG" class="com.gth.learnspring.TestG">
-		<constructor-arg index="0" ref="testE"></constructor-arg>
+	<bean id="testJ" class="com.gth.learnspring.TestJ">
+		<constructor-arg index="0" ref="testI"></constructor-arg>
 	</bean>
 
 </beans>

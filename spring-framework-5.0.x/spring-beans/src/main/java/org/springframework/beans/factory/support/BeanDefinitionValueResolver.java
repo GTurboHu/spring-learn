@@ -109,7 +109,9 @@ class BeanDefinitionValueResolver {
 			//如果是引用，则解析引用
 			//运行时bean引用？？？？？
 			RuntimeBeanReference ref = (RuntimeBeanReference) value;
-			//解析引用，就是getBean(beanName)方法
+			/**
+			 * 解析引用，就是getBean(beanName)方法
+			 */
 			return resolveReference(argName, ref);
 		}
 		else if (value instanceof RuntimeBeanNameReference) {

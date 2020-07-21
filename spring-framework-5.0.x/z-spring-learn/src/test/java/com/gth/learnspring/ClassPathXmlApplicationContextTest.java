@@ -6,6 +6,8 @@ import com.gth.applicationcontext.autowire.B;
 import com.gth.applicationcontext.circle.CircleA;
 import com.gth.applicationcontext.circle.CircleB;
 import com.gth.applicationcontext.config.ComponentScanConfig;
+import com.gth.applicationcontext.constructorcircle.CcA;
+import com.gth.applicationcontext.constructorcircle.CcB;
 import com.gth.applicationcontext.listener.TestEvent;
 import javafx.scene.shape.Circle;
 import org.junit.Test;
@@ -121,6 +123,20 @@ public class ClassPathXmlApplicationContextTest {
 		System.out.println("circleB中的属性:"+circleB.getCircleA());
 
 	}
+
+	@Test
+	public void testConstructorCircle(){
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/ConstructorCircle.xml");
+		CcA ccA = (CcA) ac.getBean("ccA");
+		CcB ccB = (CcB) ac.getBean("ccB");
+		System.out.println("ccA:"+ccA);
+		System.out.println("circleA中的属性:"+ccA.getCcB());
+		System.out.println("circleB:"+ccB);
+		System.out.println("circleB中的属性:"+ccB.getCcA());
+
+	}
+
 
 }
 

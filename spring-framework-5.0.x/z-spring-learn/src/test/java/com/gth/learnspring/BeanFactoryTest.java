@@ -105,9 +105,8 @@ public class BeanFactoryTest {
 	public void testCircleByConstructor() throws Throwable {
 		try{
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("CircularReferenceByConstructor.xml");
-			TestE testE = (TestE) ctx.getBean("testE");
-			System.out.println(testE.getClass());
-//			System.out.println(testE.getTestF().getClass());
+			TestI testI = (TestI) ctx.getBean("testI");
+			System.out.println(testI.getClass());
 		}catch(Exception e){
 			//因为要在创建testC时抛出
 			Throwable e1 = e.getCause().getCause().getCause();
@@ -137,6 +136,15 @@ public class BeanFactoryTest {
 		System.out.println(a);
 		System.out.println(a.getB());
 		System.out.println(a.getC());
+	}
+
+	@Test
+	public void testCc() {
+		BeanFactory ac =
+				new XmlBeanFactory(new ClassPathResource("CircularReferenceByConstructor.xml"));
+		TestI testI = (TestI) ac.getBean("testI");
+		System.out.println(testI);
+
 	}
 
 }
