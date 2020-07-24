@@ -380,6 +380,7 @@ public class AutowiredAnnotationBeanPostProcessor extends InstantiationAwareBean
 			 * 里边会调用这个方法 resolveDependency()
 			 * autowireByType 里也会调用这个方法 resolveDependency()
 			 * 反射调用注入方法
+			 * injectedElements里包括AutowiredAnnotationbeanPostProcessor$AutowiredFieldElement
 			 */
 			metadata.inject(bean, beanName, pvs);
 		}

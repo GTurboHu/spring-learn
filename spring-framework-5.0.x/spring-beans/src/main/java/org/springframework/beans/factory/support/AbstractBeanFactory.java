@@ -535,6 +535,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		 */
 		Object beanInstance = getSingleton(beanName, false);
 		if (beanInstance != null && beanInstance.getClass() != NullBean.class) {
+			/**
+			 * 从单例对象池中拿到对象了，才走这里
+			 */
 			if (beanInstance instanceof FactoryBean) {
 				if (!BeanFactoryUtils.isFactoryDereference(name)) {
 					Class<?> type = getTypeForFactoryBean((FactoryBean<?>) beanInstance);
@@ -545,6 +548,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 			}
 			else if (!BeanFactoryUtils.isFactoryDereference(name)) {
+				/**
+				 * 从单例对象池中拿到了对象，然后不是工厂bean
+				 * 然后Class相等，放回true
+				 */
 				if (typeToMatch.isInstance(beanInstance)) {
 					// Direct match for exposed instance?
 					return true;
@@ -641,10 +648,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		if (resolvableType != null && resolvableType.resolve() == beanType) {
 			return typeToMatch.isAssignableFrom(resolvableType);
 		}
+		//走到这，肯定是单例对象池中没实例化
 		//beanType是beanName的类，就是mbd的类，正在遍历的beanName
 		//typeToMatch要匹配的类型
 		//Assignable可指定的，可分配的
 		//返回boolean类型，beanType是否是指定的类型typeToMatch
+		//这个方法比较的是两个Class对象
 		return typeToMatch.isAssignableFrom(beanType);
 	}
 

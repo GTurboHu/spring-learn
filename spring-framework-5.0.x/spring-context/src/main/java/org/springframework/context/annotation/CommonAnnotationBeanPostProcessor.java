@@ -530,6 +530,7 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 		}
 		else {
 			/**
+			 * CommonAnnotationBeanPostProcessor调用到这，name是属性，requestingBeanName是当前类
 			 * 先从工厂中获取，实例化后再返回然后注入其他Bean中
 			 */
 			resource = factory.getBean(name, element.lookupType);

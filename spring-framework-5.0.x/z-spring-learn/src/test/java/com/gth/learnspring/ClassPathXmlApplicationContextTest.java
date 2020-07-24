@@ -1,6 +1,8 @@
 package com.gth.learnspring;
 
 import com.gth.applicationcontext.TestACBean;
+import com.gth.applicationcontext.annoautowired.AnnoA;
+import com.gth.applicationcontext.annoautowired.AnnoB;
 import com.gth.applicationcontext.autowire.A;
 import com.gth.applicationcontext.autowire.B;
 import com.gth.applicationcontext.circle.CircleA;
@@ -134,6 +136,22 @@ public class ClassPathXmlApplicationContextTest {
 		System.out.println("circleA中的属性:"+ccA.getCcB());
 		System.out.println("circleB:"+ccB);
 		System.out.println("circleB中的属性:"+ccB.getCcA());
+
+	}
+
+	@Test
+	public void testAnnoResource(){
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/ResourceAndAutowired.xml");
+		AnnoA annoA = (AnnoA) ac.getBean("annoA");
+
+	}
+
+	@Test
+	public void testAnnoAutowired(){
+		ApplicationContext ac =
+				new ClassPathXmlApplicationContext("application/ResourceAndAutowired.xml");
+		AnnoB annoB = (AnnoB) ac.getBean("annoB");
 
 	}
 

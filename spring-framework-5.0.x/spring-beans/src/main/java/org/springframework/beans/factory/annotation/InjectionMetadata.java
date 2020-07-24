@@ -95,6 +95,11 @@ public class InjectionMetadata {
 				 * 里边会调用这个方法 resolveDependency()
 				 * autowireByType 里也会调用这个方法 resolveDependency()
 				 * element是属性，target书目标对象，beanName是目标对象的名称
+				 * 如果element是CommonAnnotationBeanPostProcessor$ResourceElement,则是按名称注入
+				 * 调用CommonAnnotationBeanPostProcessor$ResourceElement的inject方法
+				 * 如果element是AutowiredAnnotationbeanPostProcessor$AutowiredFieldElement
+				 * 调用AutowiredAnnotationbeanPostProcessor$AutowiredFieldElement的inject方法
+				 * AutowiredFieldElement确确实实是AutowiredAnnotationbeanPostProcessor的内部类
 				 */
 				element.inject(target, beanName, pvs);
 			}
