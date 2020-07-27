@@ -208,7 +208,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		/**
 		 * 主要涉及了循环引用的相关功能
 		 */
-		//检查缓存中是否存在实例
+		//检查缓存中是否存在实例,此处singletonObjects加了final,所以在synchronized的时候，不会变对象,也就保证了锁对象的正确
 		Object singletonObject = this.singletonObjects.get(beanName);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			//如果是空，则锁定全局变量并进行处理
